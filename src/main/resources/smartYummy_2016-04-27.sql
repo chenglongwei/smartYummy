@@ -88,7 +88,7 @@ CREATE TABLE `order_item` (
 
 
 
-# Dump of table users
+# Dump of table users, just a demo
 # ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `users`;
