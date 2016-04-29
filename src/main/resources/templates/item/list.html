@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <title>Items : View all</title>
+</head>
+<body>
+<h1 layout:fragment="header">Messages : View all</h1>
+<div layout:fragment="content" class="container">
+    <div class="pull-right">
+        <a href="form.html" th:href="@{/(form)}">Create Message</a>
+    </div>
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Category</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${items.empty}">
+            <td colspan="3">No items</td>
+        </tr>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.category}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

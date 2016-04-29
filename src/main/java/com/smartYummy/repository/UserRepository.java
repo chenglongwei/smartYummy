@@ -7,6 +7,7 @@ package com.smartYummy.repository;
 import javax.transaction.Transactional;
 
 import com.smartYummy.model.User;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.repository.CrudRepository;
 
 /**
