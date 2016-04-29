@@ -1,25 +1,58 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Layout</title>
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
-	href="../../css/bootstrap.min.css" />
+	<title>Home Page</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+	<link rel="stylesheet" th:href="@{/css/jumbotron-narrow.css}" href="../../css/jumbotron-narrow.css" />
+	<link rel = "stylesheet" th:href="@{/css/carousel.css}" href="../../css/carousel.css" />
+	<link rel = "stylesheet" th:href="@{/css/dashboard.css}" href="../../css/dashboard.css" />
 </head>
 <body>
 	<div class="container">
-		<div class="navbar">
-			<div class="navbar-inner">
-				<a class="brand"
-					href="https://github.com/ultraq/thymeleaf-layout-dialect">
-					Thymeleaf - Layout </a>
-				<ul class="nav">
-					<li><a th:href="@{/}" href="messages.html"> Messages </a></li>
+		<div class="header clearfix">
+			<nav>
+				<ul class="nav nav-pills pull-right">
+					<li role="presentation" class="active"><a href="#">HOME</a></li>
+					<li role="presentation"><a href="#">ABOUT US</a></li>
+					<li role="presentation"><a href="#">CONTACT</a></li>
+					<li role="presentation"><a href="#">SIGN UP</a></li>
+					<li role="presentation"><a href="#">SIGN IN</a></li>
 				</ul>
-			</div>
+			</nav>
 		</div>
-		<h1 layout:fragment="header">Layout</h1>
-		<div layout:fragment="content">Fake content</div>
-	</div>
+
+		<div class="jumbotron">
+			<h3 class="text-muted">SmartYummy</h3>
+			<p class="lead">Takeout Order Management System</p>
+			<p><a class="btn btn-lg btn-success" href="#" role="button">Order Now</a></p>
+		</div>
+		<div class="row placeholders">
+		<div class="col-xs-6 col-sm-3 placeholder">
+			<img src="../../images/MainCourseMeat.jpg" th:src="@{/images/MainCourseMeat.jpg}" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+			<h4>Drink</h4>
+			<span class="text-muted">View details</span>
+		</div>
+		<div class="col-xs-6 col-sm-3 placeholder">
+			<!--<img src="" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">-->
+			<h4>Appetizer</h4>
+			<span class="text-muted">View details</span>
+		</div>
+		<div class="col-xs-6 col-sm-3 placeholder">
+			<!--<img src="" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">-->
+			<h4>Main course</h4>
+			<span class="text-muted">View details</span>
+		</div>
+		<div class="col-xs-6 col-sm-3 placeholder">
+			<!--<img src="" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">-->
+			<h4>Desert</h4>
+			<span class="text-muted">View details</span>
+		</div>
+		</div>
+
+		<footer class="footer">
+			<p>&copy; 275 Team Project, Group 10</p>
+		</footer>
+
+	</div> <!-- /container -->
 </body>
 </html>
