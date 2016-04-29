@@ -18,7 +18,7 @@ public class MainController {
         model.addAttribute("name", name);
         if (name.startsWith("er"))
             throw new YummyException("yummy error!");
-        return "layout";
+        return "welcome";
     }
 
 }
