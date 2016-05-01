@@ -1,6 +1,6 @@
 package com.smartYummy.controller;
 
-import com.smartYummy.Exception.YummyException;
+import com.smartYummy.exception.YummyException;
 import com.smartYummy.model.Item;
 import com.smartYummy.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class ItemController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listItem(Model model) {
-        List<Item> items = itemService.listAllItem();
+        List<Item> items = itemService.listAllItems();
         model.addAttribute("items", items);
         return "item/list";
     }

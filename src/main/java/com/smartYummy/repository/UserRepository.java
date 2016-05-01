@@ -1,14 +1,14 @@
 package com.smartYummy.repository;
 
 /**
- * Created by chenglongwei on 4/21/16.
+ * Created by chenglongwei on 4/28/16.
  */
 
-import javax.transaction.Transactional;
-
 import com.smartYummy.model.User;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * A DAO for the entity User is simply created by extending the CrudRepository
@@ -17,16 +17,9 @@ import org.springframework.data.repository.CrudRepository;
  * The magic is that such methods must not be implemented, and moreover it is
  * possible create new query methods working only by defining their signature!
  *
- * @author netgloo
+ * @author chenglongwei
  */
-@Transactional
-public interface UserRepository extends CrudRepository<User, Long> {
-
-    /**
-     * Return the user having the passed email or null if no user is found.
-     *
-     * @param email the user email.
-     */
-    public User findByEmail(String email);
-
-} // class UserDao
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+}

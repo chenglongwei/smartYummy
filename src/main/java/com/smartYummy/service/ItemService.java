@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ItemService {
     List<Item> findByCategory(String category);
-    List<Item> listAllItem();
+    List<Item> listAllItems();
     Item findByID(long id);
     Item insertItem(Item item);
     void setTag(Item item, int tag);
