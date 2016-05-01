@@ -20,6 +20,17 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
+# Create new database `smartYummy` and use it.
+# ------------------------------------------------------------
+
+DROP DATABASE IF EXISTS smartYummy;
+
+CREATE DATABASE smartYummy;
+
+USE smartYummy;
+
+
+
 # Dump of table customer
 # ------------------------------------------------------------
 
