@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.26)
 # Database: smartYummy
-# Generation Time: 2016-04-27 22:27:00 +0000
+# Generation Time: 2016-05-01 22:41:21 +0000
 # ************************************************************
 
 
@@ -18,22 +18,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
-# Dump of table customer
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `customer`;
-
-CREATE TABLE `customer` (
-  `id` int(11) NOT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `name` varchar(45) DEFAULT NULL,
-  `password` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 
 # Dump of table item
@@ -50,9 +34,19 @@ CREATE TABLE `item` (
   `calories` int(11) DEFAULT NULL,
   `prepare_time` int(11) NOT NULL,
   `tag` int(11) DEFAULT '1' COMMENT '1, active; 0, inactive',
+  `categrory` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `item` WRITE;
+/*!40000 ALTER TABLE `item` DISABLE KEYS */;
+
+INSERT INTO `item` (`id`, `name`, `category`, `picture`, `price`, `calories`, `prepare_time`, `tag`, `categrory`)
+VALUES
+  (0,'noodle','main food',NULL,0.00,10,10,1,NULL);
+
+/*!40000 ALTER TABLE `item` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table order
@@ -64,9 +58,7 @@ CREATE TABLE `order` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `pickup_time` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `f_order_customer_idx` (`customer_id`),
-  CONSTRAINT `f_order_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -88,28 +80,28 @@ CREATE TABLE `order_item` (
 
 
 
-# Dump of table users, just a demo
+# Dump of table user
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `user`;
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
+  `password` varchar(255) NOT NULL,
+  `role` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `email`, `name`)
+INSERT INTO `user` (`id`, `email`, `password`, `role`)
 VALUES
-	(1,'112','akd'),
-	(2,'112','akd'),
-	(3,'112','akd');
+  (1,'demo@localhost','$2a$10$ebyC4Z5WtCXXc.HGDc1Yoe6CLFzcntFmfse6/pTj7CeDY5I05w16C','ADMIN');
 
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

@@ -7,7 +7,7 @@ package com.smartYummy.model;
 import javax.persistence.*;
 
 /**
- * An entity Customer composed by three fields (id, email, name).
+ * An entity User composed by three fields (id, email, name).
  * The Entity annotation indicates that this class is a JPA entity.
  * The Table annotation specifies the name for the table in the db.
  * @author chenglongwei

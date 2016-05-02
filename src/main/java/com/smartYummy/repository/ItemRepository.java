@@ -1,7 +1,7 @@
 package com.smartYummy.repository;
 
 import com.smartYummy.model.Item;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,7 +10,6 @@ import java.util.List;
  * Created by chenglongwei on 4/28/16.
  */
 @Repository
-public interface ItemRepository extends CrudRepository<Item, Long> {
+public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findByCategory(String category);
-    List<Item> findAll();
 }
