@@ -1,9 +1,11 @@
 package com.smartYummy.controller;
 
 import com.smartYummy.exception.YummyException;
+import com.smartYummy.model.CurrentUser;
 import com.smartYummy.model.Item;
 import com.smartYummy.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -47,7 +49,9 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(@ModelAttribute Item item) {
+    public String create(Authentication authentication, @ModelAttribute Item item) {
+        CurrentUser currentUser = (CurrentUser) authentication.getPrincipal();authentication.getPrincipal();
+        System.out.println(currentUser);
         return "item/create";
     }
 

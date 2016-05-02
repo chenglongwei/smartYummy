@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 /**
  * A class to test interactions with the MySQL database using the UserService class.
@@ -20,8 +24,8 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "user/login";
+    public ModelAndView getLoginPage(@RequestParam Optional<String> error) {
+        return new ModelAndView("user/login", "error", error);
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
