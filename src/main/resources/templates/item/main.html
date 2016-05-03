@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
 
     <title>smartYammy - Make Order Easier</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <!--&lt;!&ndash; Bootstrap Core CSS &ndash;&gt;-->
+    <!--<link href="../static/css/bootstrap.min.css" rel="stylesheet">-->
 
-    <!-- Custom CSS -->
-    <link href="../static/css/shop-homepage.css" rel="stylesheet">
+    <!--&lt;!&ndash; Custom CSS &ndash;&gt;-->
+    <!--<link href="../static/css/shop-homepage.css" rel="stylesheet">-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" th:href="@{/css/shop-homepage.css}" href="../../css/shop-homepage.css" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,7 +69,7 @@
 
             <div class="col-md-3">
                 <p class="lead">Shop Name</p>
-                <div class="list-group"><a href="appetizer.html" class="list-group-item">Appetizer</a> <a href="main.html" class="list-group-item">Main course</a> <a href="dessert.html" class="list-group-item">Dessert</a> <a href="drink.html" class="list-group-item">Drink</a></div>
+                <div class="list-group"><a href="appetizer" class="list-group-item">Appetizer</a> <a href="main" class="list-group-item">Main course</a> <a href="dessert" class="list-group-item">Dessert</a> <a href="drink" class="list-group-item">Drink</a></div>
             </div>
 
             <div class="col-md-9">
@@ -95,14 +98,14 @@
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="http://placehold.it/320x150" alt=""/>
                             <div class="caption">
-                              <h4 class="pull-right">$4.99</h4>
-                              <h4><a href="#">#1 Egg Rolls</a></h4>
+                              <h4 class="pull-right">$7.99</h4>
+                              <h4><a href="#">#7 Fried Rice</a></h4>
                               <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
                             </div>
                             <div class="ratings">
-                              <p class="pull-right">200 Cal</p>
+                              <p class="pull-right">550 Cal</p>
                               <p>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
@@ -116,35 +119,14 @@
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="http://placehold.it/320x150" alt=""/>
                             <div class="caption">
-                              <h4 class="pull-right">$4.99</h4>
-                              <h4><a href="#">#2 Pot Stickers</a></h4>
+                              <h4 class="pull-right">$7.99</h4>
+                              <h4><a href="#">#8 Chew Mein</a></h4>
                               <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                             <div class="ratings">
-                              <p class="pull-right">200 Cal</p>
-                              <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
-                            <div class="caption">
-                              <h4 class="pull-right">$4.99</h4>
-                              <h4><a href="#">#3 Wonton Soup</a></h4>
-                              <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                            <div class="ratings">
-                              <p class="pull-right">400 Cal</p>
+                              <p class="pull-right">620 Cal</p>
                               <p>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
@@ -158,14 +140,35 @@
 
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            <img src="http://placehold.it/320x150" alt=""/>
                             <div class="caption">
-                              <h4 class="pull-right">$3.99</h4>
-                              <h4><a href="#">#4 Big Pancake</a></h4>
+                              <h4 class="pull-right">$8.99</h4>
+                              <h4><a href="#">#9 Noodle Soup</a></h4>
                               <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                             <div class="ratings">
-                              <p class="pull-right">300 Cal</p>
+                              <p class="pull-right">630 Cal</p>
+                              <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt=""/>
+                            <div class="caption">
+                              <h4 class="pull-right">$9.99</h4>
+                              <h4><a href="#">#10 Sour Chicken</a></h4>
+                              <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                            <div class="ratings">
+                              <p class="pull-right">660 Cal</p>
                               <p>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
@@ -179,14 +182,14 @@
 
                 <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                          <img src="http://placehold.it/320x150" alt="">
+                          <img src="http://placehold.it/320x150" alt=""/>
                             <div class="caption">
-                              <h4 class="pull-right">$5.99</h4>
-                              <h4><a href="#">#5 Dumpling</a></h4>
-                                <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                              <h4 class="pull-right">$9.99</h4>
+                              <h4><a href="#">#11 Spicy Pork</a></h4>
+                              <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                             </div>
                             <div class="ratings">
-                              <p class="pull-right">300 Cal</p>
+                              <p class="pull-right">680 Cal</p>
                               <p>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
@@ -198,14 +201,14 @@
                         </div>
                     </div>
                 <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail"> <img src="http://placehold.it/320x150" alt="">
+                    <div class="thumbnail"> <img src="http://placehold.it/320x150" alt=""/>
                       <div class="caption">
-                        <h4 class="pull-right">$1.99</h4>
-                        <h4><a href="#">#6 Chinese Donut</a></h4>
+                        <h4 class="pull-right">$9.99</h4>
+                        <h4><a href="#">#12 Spicy Fish</a></h4>
                         <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                       </div>
                       <div class="ratings">
-                        <p class="pull-right">180 Cal</p>
+                        <p class="pull-right">600 Cal</p>
                         <p> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star-empty"></span> </p>
                       </div>
                     </div>
@@ -231,7 +234,7 @@
                 </div>
             </div>
         </footer>
-
+        </hr>
     </div>
     <!-- /.container -->
 
@@ -244,4 +247,4 @@
 </body>
 
 </html>
-
+</html>
