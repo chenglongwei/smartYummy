@@ -30,6 +30,11 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
+        System.out.println("Income request for Register");
         return "user/register";
     }
+//    public ModelAndView register(@RequestParam Optional<String> error) {
+//        System.out.println("Income request for Register");
+//        return new ModelAndView("user/register", "error", error);
+//    }
 }
