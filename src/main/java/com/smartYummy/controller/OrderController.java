@@ -5,12 +5,14 @@ import com.smartYummy.model.OrderItem;
 import com.smartYummy.service.ItemService;
 import com.smartYummy.service.OrderService;
 import com.smartYummy.service.ShoppingCartService;
+import com.smartYummy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -25,6 +27,10 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private HttpSession httpSession;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     void addItem(@RequestParam("item_id") long item_id, @RequestParam("quantity") int quantity) {
@@ -62,6 +68,7 @@ public class OrderController {
     private OrderItem getOrderItem(long item_id) {
         OrderItem orderItem = new OrderItem();
         orderItem.setItem(itemService.findByID(item_id));
+        orderItem.setUser(userService.findByID((Long) httpSession.getAttribute("user_id")));
         return orderItem;
     }
 }

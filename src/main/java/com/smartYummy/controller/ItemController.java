@@ -41,34 +41,6 @@ public class ItemController {
         return "item/list";
     }
 
-    @RequestMapping(value = "/appetizer", method = RequestMethod.GET)
-    public String listAppetizer(Model model) {
-        List<Item> items = itemService.listAllItems();
-        model.addAttribute("items", items);
-        return "item/appetizer";
-    }
-
-    @RequestMapping(value = "/drink", method = RequestMethod.GET)
-    public String listDrink(Model model) {
-        List<Item> items = itemService.listAllItems();
-        model.addAttribute("items", items);
-        return "item/drink";
-    }
-
-    @RequestMapping(value = "/dessert", method = RequestMethod.GET)
-    public String listDessert(Model model) {
-        List<Item> items = itemService.listAllItems();
-        model.addAttribute("items", items);
-        return "item/dessert";
-    }
-
-    @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public String listMain(Model model) {
-        List<Item> items = itemService.listAllItems();
-        model.addAttribute("items", items);
-        return "item/main";
-    }
-
     @RequestMapping(value = "/list/{category}", method = RequestMethod.GET)
     public String listItemByTag(@PathVariable("category") String category, Model model) {
         List<Item> items = itemService.findByCategory(category);

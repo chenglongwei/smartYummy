@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 /**
@@ -22,6 +23,8 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private HttpSession httpSession;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView getLoginPage(@RequestParam Optional<String> error) {
