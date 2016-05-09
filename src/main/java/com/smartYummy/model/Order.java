@@ -9,7 +9,7 @@ import java.util.List;
  * Created by chenglongwei on 5/8/16.
  */
 @Entity
-@Table(name = "user_order")
+@Table(name = "yummy_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
