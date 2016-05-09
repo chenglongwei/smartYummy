@@ -20,8 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http.authorizeRequests()
-                .antMatchers("/", "/item/list/**", "/register").permitAll()
+                .antMatchers("/", "/item/list/**", "/register", "/order/**").permitAll()
                 .antMatchers("/item/create", "/update/tag").hasAuthority("ADMIN")
                 .anyRequest().fullyAuthenticated()
                 .and()

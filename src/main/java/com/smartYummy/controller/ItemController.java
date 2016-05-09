@@ -1,6 +1,6 @@
 package com.smartYummy.controller;
 
-import com.smartYummy.Exception.YummyException;
+import com.smartYummy.exception.YummyException;
 import com.smartYummy.model.CurrentUser;
 import com.smartYummy.model.Item;
 import com.smartYummy.service.ItemService;

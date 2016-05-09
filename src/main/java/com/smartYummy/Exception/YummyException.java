@@ -1,4 +1,4 @@
-package com.smartYummy.Exception;
+package com.smartYummy.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
