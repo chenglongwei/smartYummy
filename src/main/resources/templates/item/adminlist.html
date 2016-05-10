@@ -1,47 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+<html lang="en" ng-app="smartYummy.app" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" type="text/css" href="bootstrap.css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="/js/item/adminlist.controller.js"></script>
 
-    <!-- Website CSS style -->
-    <link rel="stylesheet" type="text/css" href="admin.css"/>
 
-    <!-- Website Font style -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"/>
-
-    <!-- Google Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'/>
-    <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'/>
-
-    <title>Admin</title>
+    <title>Admin List</title>
 </head>
 <body>
 <div class="container">
     <div class="pull-right">
         <a href="/item/create" th:href="@{/item/create}">Create Message</a>
     </div>
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped" ng-controller="Adminlist.Controller">
         <thead>
         <tr>
             <td>ID</td>
             <td>Name</td>
             <td>Category</td>
+            <td>Tag</td>
+            <th>Action</th>
+            <th>&nbsp;</th>
         </tr>
         </thead>
         <tbody>
         <tr th:if="${items.empty}">
             <td colspan="3">No items</td>
         </tr>
-        <tr th:each="item : ${items}">
-            <td th:text="${item.id}"></td>
-            <td th:text="${item.name}"></td>
-            <td th:text="${item.category}"></td>
+        <tr th:each="item : ${items}" ng-model="vm.item">
+                <td id = "id" name = "id" th:text="${item.id}" th:value="${item.id}"></td>
+                <td id = "item.name" th:text="${item.name}"></td>
+                <td id = "item.category" th:text="${item.category}"></td>
+                <td id = "item.tag" th:text="${item.tag}"></td>
+                <td>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" th:attr="ng-disabled=${item.tag},ng-click='changeTag(' + ${item.id} + ')'"  ng-click="changeTag('${item.id}')" style="background-color:dimgray; border: none">Disable</button>
+                    </div>
+                </td>
         </tr>
+
         </tbody>
     </table></div>
 
-<script type="text/javascript" src="assets/js/bootstrap.js"></script>
 </body>
 </html>
