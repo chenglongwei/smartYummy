@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,8 +41,9 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    List<Order> getItems(Authentication authentication) {
-        return orderService.getOrders(getUser(authentication).getId());
+    String getItems(Model model, Authentication authentication) {
+        model.addAttribute("orders", orderService.getOrders(getUser(authentication).getId()));
+        return "order/list";
     }
 
     private User getUser(Authentication authentication) {
