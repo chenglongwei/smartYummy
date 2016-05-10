@@ -25,8 +25,7 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date pickup_time;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date prepare_time;
+    private int prepare_time;
 
     private String status;
 
@@ -62,11 +61,11 @@ public class Order {
         this.pickup_time = pickup_time;
     }
 
-    public Date getPrepare_time() {
+    public int getPrepare_time() {
         return prepare_time;
     }
 
-    public void setPrepare_time(Date prepare_time) {
+    public void setPrepare_time(int prepare_time) {
         this.prepare_time = prepare_time;
     }
 
