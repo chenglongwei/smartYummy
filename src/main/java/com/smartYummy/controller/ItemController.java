@@ -58,7 +58,14 @@ public class ItemController {
         }
         itemService.insertItem(item);
         redirect.addFlashAttribute("globalMessage", "Successfully created a new item");
-        return "redirect:item/create";
+        return "redirect:/item/create";
+    }
+
+    @RequestMapping(value = "/adminlist", method = RequestMethod.GET)
+    public String adminListItem(Model model) {
+        List<Item> items = itemService.listAllItems();
+        model.addAttribute("items", items);
+        return "item/adminlist";
     }
 
     @RequestMapping(value = "/update/tag", method = RequestMethod.POST)
