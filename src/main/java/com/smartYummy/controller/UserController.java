@@ -56,9 +56,16 @@ public class UserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String register(@RequestParam("email") String email,
-                           @RequestParam("password") String password,
+                           @RequestParam("password1") String password1,
+                           @RequestParam("password2") String password2,
                            @RequestParam("code") String code,
                            RedirectAttributes redirect) {
+
+        // verify password1 is same with password2
+        if (!password1.equals(password2)) {
+            redirect.addFlashAttribute("globalMessage", "Repeated password is not same!");
+            return "user/register";
+        }
         // verify code
         String verifiedCode = redisTemplate.opsForValue().get(getVerifyEmailKey(email));
         if (!code.equals(verifiedCode)) {
@@ -68,7 +75,7 @@ public class UserController {
 
         // create user
         PasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encryptPassword = encoder.encode(password);
+        String encryptPassword = encoder.encode(password1);
         User user = new User();
         user.setEmail(email);
         user.setPassword(encryptPassword);
