@@ -25,6 +25,11 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date pickup_time;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date prepare_time;
+
+    private String status;
+
     public long getId() {
         return id;
     }
@@ -55,5 +60,13 @@ public class Order {
 
     public void setPickup_time(Date pickup_time) {
         this.pickup_time = pickup_time;
+    }
+
+    public Date getPrepare_time() {
+        return prepare_time;
+    }
+
+    public void setPrepare_time(Date prepare_time) {
+        this.prepare_time = prepare_time;
     }
 }
