@@ -25,6 +25,16 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<Item> findByCategoryAndTag(String category, int tag) {
+        return repository.findByCategoryAndTag(category, tag);
+    }
+
+    @Override
+    public List<Item> findByTag(int tag) {
+        return repository.findByTag(tag);
+    }
+
+    @Override
     public List<Item> listAllItems() {
         return repository.findAll();
     }

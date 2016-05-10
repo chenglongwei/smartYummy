@@ -9,6 +9,8 @@ import java.util.List;
  */
 public interface ItemService {
     List<Item> findByCategory(String category);
+    List<Item> findByCategoryAndTag(String category, int tag);
+    List<Item> findByTag(int tag);
     List<Item> listAllItems();
     Item findByID(long id);
     Item insertItem(Item item);

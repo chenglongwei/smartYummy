@@ -32,14 +32,20 @@ public class ItemController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String listItem(Model model) {
-        List<Item> items = itemService.listAllItems();
+        /**
+         * item tag: 0 means inactive, 1 means active
+         */
+        List<Item> items = itemService.findByTag(1);
         model.addAttribute("items", items);
         return "item/list";
     }
 
     @RequestMapping(value = "/list/{category}", method = RequestMethod.GET)
     public String listItemByTag(@PathVariable("category") String category, Model model) {
-        List<Item> items = itemService.findByCategory(category);
+        /**
+         * item tag: 0 means inactive, 1 means active
+         */
+        List<Item> items = itemService.findByCategoryAndTag(category, 1);
         model.addAttribute("items", items);
         return "item/list";
     }
