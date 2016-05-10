@@ -29,7 +29,7 @@ public class OrderController {
     private OrderService orderService;
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.NOT_MODIFIED)
+    @ResponseStatus(value = HttpStatus.OK)
     void removeItem(@RequestParam("id") long id) {
         Order order = orderService.findByID(id);
         if (!order.getStatus().equals("not started")) {

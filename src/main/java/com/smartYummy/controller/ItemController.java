@@ -4,13 +4,11 @@ import com.smartYummy.exception.YummyException;
 import com.smartYummy.model.Item;
 import com.smartYummy.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -69,14 +67,12 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/update/tag", method = RequestMethod.POST)
-    public void changeTag(@Valid Item item, BindingResult result, RedirectAttributes redirect) {
-        if (result.hasErrors()) {
-            throw new YummyException("bind item has errors");
-        }
+    @ResponseStatus(value = HttpStatus.OK)
+    public void changeTag(@RequestParam("id") long id) {
+        Item item = itemService.findByID(id);
         /**
          * item tag: 0 means inactive, 1 means active
          */
         itemService.setTag(item, item.getTag() == 0 ? 1 : 0);
-        redirect.addFlashAttribute("globalMessage", "Successfully update item tag");
     }
 }
