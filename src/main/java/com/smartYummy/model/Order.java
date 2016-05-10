@@ -69,4 +69,12 @@ public class Order {
     public void setPrepare_time(Date prepare_time) {
         this.prepare_time = prepare_time;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

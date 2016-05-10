@@ -13,20 +13,20 @@ import java.util.Date;
 public class ScheduledTasks {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(cron = "0 0 6 * * ?")
     public void chief1() {
-        System.out.println("worker1, The time is now " + dateFormat.format(new Date()));
+        System.out.println("worker1, start to get order, time " + dateFormat.format(new Date()));
+
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(cron = "0 0 6 * * ?")
     public void chief2() {
-        System.out.println("worker2, The time is now " + dateFormat.format(new Date()));
+        System.out.println("worker2, start to get order, time " + dateFormat.format(new Date()));
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(cron = "0 0 6 * * ?")
     public void chief3() {
-        System.out.println("worker3, The time is now " + dateFormat.format(new Date()));
+        System.out.println("worker3, start to get order, time " + dateFormat.format(new Date()));
     }
-
 
 }

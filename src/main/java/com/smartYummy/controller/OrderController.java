@@ -3,15 +3,18 @@ package com.smartYummy.controller;
 import com.smartYummy.model.CurrentUser;
 import com.smartYummy.model.Order;
 import com.smartYummy.model.OrderItem;
+import com.smartYummy.model.User;
 import com.smartYummy.service.ItemService;
 import com.smartYummy.service.OrderService;
 import com.smartYummy.service.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
@@ -22,63 +25,27 @@ import java.util.List;
 @RequestMapping("/order")
 public class OrderController {
     @Autowired
-    private ShoppingCartService shoppingCartService;
-    @Autowired
     private OrderService orderService;
-    @Autowired
-    private ItemService itemService;
-
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    void addItem(@RequestParam("item_id") long item_id,
-                 @RequestParam("quantity") int quantity,
-                 Authentication authentication) {
-        OrderItem orderItem = getOrderItem(authentication, item_id);
-        orderItem.setQuantity(quantity);
-        shoppingCartService.addItem(orderItem);
-    }
-
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    void updateItem(@RequestParam("item_id") long item_id,
-                    @RequestParam("quantity") int quantity,
-                    Authentication authentication) {
-        OrderItem orderItem = getOrderItem(authentication, item_id);
-        orderItem.setQuantity(quantity);
-        shoppingCartService.updateItem(orderItem);
-    }
 
     @RequestMapping(value = "/remove", method = RequestMethod.POST)
-    void removeItem(@RequestParam("item_id") long item_id,
-                    Authentication authentication) {
-        OrderItem orderItem = getOrderItem(authentication, item_id);
-        shoppingCartService.removeItem(orderItem);
+    @ResponseStatus(value = HttpStatus.NOT_MODIFIED)
+    void removeItem(@RequestParam("id") long id) {
+        Order order = orderService.findByID(id);
+        if (!order.getStatus().equals("not started")) {
+            System.out.println("delete a started order");
+            return;
+        }
+
+        orderService.deleteByID(id);
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    List<OrderItem> getItems() {
-        return shoppingCartService.getOrderItems();
+    List<Order> getItems(Authentication authentication) {
+        return orderService.getOrders(getUser(authentication).getId());
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    void save(Authentication authentication) {
-        Order order = new Order();
-        // insert user bean
+    private User getUser(Authentication authentication) {
         CurrentUser currentUser = (CurrentUser) authentication.getPrincipal();
-        order.setUser(currentUser.getUser());
-        System.out.println(currentUser.getUser());
-
-        List<OrderItem> itemList = shoppingCartService.getOrderItems();
-        order.setOrderItems(itemList);
-        orderService.saveOrder(order);
-    }
-
-    private OrderItem getOrderItem(Authentication authentication, long item_id) {
-        OrderItem orderItem = new OrderItem();
-        // insert item bean
-        orderItem.setItem(itemService.findByID(item_id));
-        // insert user bean
-        CurrentUser currentUser = (CurrentUser) authentication.getPrincipal();
-        orderItem.setUser(currentUser.getUser());
-        System.out.println(currentUser.getUser());
-        return orderItem;
+        return currentUser.getUser();
     }
 }
