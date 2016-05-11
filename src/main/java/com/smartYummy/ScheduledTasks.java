@@ -21,25 +21,31 @@ public class ScheduledTasks {
     private OrderService orderService;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(cron = "0 0 6 * * ?")
+    //@Scheduled(cron = "0 0 6 * * ?")
+    @Scheduled(fixedDelay = 5000)
     public void chief1() {
-        System.out.println("worker1, start to get order, time " + dateFormat.format(new Date()));
+        System.out.println("worker1, threadId: " + Thread.currentThread().getId() +
+                " start to get order, time " + dateFormat.format(new Date()));
         worker("chief1");
     }
 
-    @Scheduled(cron = "0 0 6 * * ?")
+    //@Scheduled(cron = "0 0 6 * * ?")
+    @Scheduled(fixedDelay = 5000)
     public void chief2() {
-        System.out.println("worker2, start to get order, time " + dateFormat.format(new Date()));
+        System.out.println("worker2, threadId: " + Thread.currentThread().getId() +
+                " start to get order, time " + dateFormat.format(new Date()));
         worker("chief2");
     }
 
-    @Scheduled(cron = "0 0 6 * * ?")
+    //@Scheduled(cron = "0 0 6 * * ?")
+    @Scheduled(fixedDelay = 5000)
     public void chief3() {
-        System.out.println("worker3, start to get order, time " + dateFormat.format(new Date()));
+        System.out.println("worker3, threadId: " + Thread.currentThread().getId() +
+                " start to get order, time " + dateFormat.format(new Date()));
         worker("chief3");
     }
 
-    synchronized private Order pickOrder() {
+    private Order pickOrder() {
         Date current = new Date();
         List<Order> orders = orderService.findSameDayOrders(current);
         for (Order order : orders) {
@@ -65,7 +71,8 @@ public class ScheduledTasks {
 
             Order order = pickOrder();
             if (order != null) {
-                System.out.println(chiefId + ", order " + order.getId() + " begin to cooke");
+                System.out.println(chiefId + ", threadId " + Thread.currentThread().getId() +
+                        " , order " + order.getId() + " begin to cooke");
                 try {
                     // monitor cooking
                     Thread.sleep(order.getPrepare_time() * 60 * 1000);
@@ -77,10 +84,10 @@ public class ScheduledTasks {
                 orderService.saveOrder(order);
                 System.out.println(chiefId + ", order " + order.getId() + " finish cooking");
             } else {
-                System.out.println(chiefId + " is free");
+                System.out.println(chiefId + ", threadID " + Thread.currentThread().getId() + " is free");
                 try {
                     // have a rest
-                    Thread.sleep(5000);
+                    Thread.sleep(10000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
