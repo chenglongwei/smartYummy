@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -35,9 +34,6 @@ public class ShoppingCartController {
     private OrderService orderService;
     @Autowired
     private ItemService itemService;
-
-    @Autowired
-    private UserService userService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
@@ -69,34 +65,34 @@ public class ShoppingCartController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     String getItems(Model model) {
-        model.addAttribute("order_items", shoppingCartService.getOrderItems());
+        List<OrderItem> orderItems = shoppingCartService.getOrderItems();
+        model.addAttribute("order_items", orderItems);
+        model.addAttribute("earliest_time", getEarliestDate(getOrderPrepareTime(orderItems)));
         return "shopping/list";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
     String save(@RequestParam("year") int year,
-              @RequestParam("month") int month,
-              @RequestParam("day") int day,
-              @RequestParam("hour") int hour,
-              @RequestParam("minute") int minute,
-              Authentication authentication) {
+                @RequestParam("month") int month,
+                @RequestParam("day") int day,
+                @RequestParam("hour") int hour,
+                @RequestParam("minute") int minute,
+                Authentication authentication,
+                Model model) {
 
         // pickupDate
         Calendar date = Calendar.getInstance();
         date.set(year, month, day, hour, minute);
         Date pickupTime = date.getTime();
+        System.out.println("pickup time " + pickupTime.toString());
 
         // order time
-        int orderPrepareTime = 0;
-        List<OrderItem> itemList = shoppingCartService.getOrderItems();
-        for(OrderItem orderItem : itemList) {
-            orderPrepareTime += orderItem.getQuantity() * orderItem.getItem().getPrepareTime();
-        }
+        int orderPrepareTime = getOrderPrepareTime(shoppingCartService.getOrderItems());
 
         Date startDate = fulfillStartTime(orderPrepareTime, pickupTime);
         if (startDate == null) {
-            // todo add some hint to client;
+            model.addAttribute("error", "pickup time could not fulfill");
             return "shopping/list";
         }
 
@@ -106,7 +102,7 @@ public class ShoppingCartController {
         order.setUser(currentUser.getUser());
         System.out.println(currentUser.getUser());
 
-        order.setOrderItems(itemList);
+        order.setOrderItems(shoppingCartService.getOrderItems());
         // pickupTime
         order.setPickup_time(pickupTime);
         order.setPrepare_time(orderPrepareTime);
@@ -164,7 +160,7 @@ public class ShoppingCartController {
             }
 
             // find one valid startDate
-            if (gapCount < 2) {
+            if (gapCount < 3) {
                 return startDate;
             }
         }
@@ -204,6 +200,33 @@ public class ShoppingCartController {
     }
 
     private Date getEarliestDate(int prepareTime) {
+        // Get today's close time.
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        calendar.set(Calendar.MINUTE, 0);
+        Date closeDate = calendar.getTime();
+        Date latestDate = DateUtils.addMinutes(closeDate, -prepareTime);
+
+        // get the earliest possible time;
+        Date current = new Date(System.currentTimeMillis());
+
+        while (current.compareTo(latestDate) < 0) {
+            Date res = fulfillStartTime(prepareTime, current);
+            if (res != null) {
+                return res;
+            }
+
+            current = DateUtils.addMinutes(current, 1);
+        }
+
         return null;
+    }
+
+    private int getOrderPrepareTime(List<OrderItem> itemList) {
+        int orderPrepareTime = 0;
+        for (OrderItem orderItem : itemList) {
+            orderPrepareTime += orderItem.getQuantity() * orderItem.getItem().getPrepareTime();
+        }
+        return orderPrepareTime;
     }
 }
