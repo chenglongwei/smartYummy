@@ -3,6 +3,7 @@ package com.smartYummy.controller;
 import com.smartYummy.model.CurrentUser;
 import com.smartYummy.model.Order;
 import com.smartYummy.model.OrderItem;
+import com.smartYummy.model.YummyResponse;
 import com.smartYummy.service.ItemService;
 import com.smartYummy.service.OrderService;
 import com.smartYummy.service.ShoppingCartService;
@@ -12,10 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -71,14 +69,15 @@ public class ShoppingCartController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
-    String save(@RequestParam("year") int year,
-                @RequestParam("month") int month,
-                @RequestParam("day") int day,
-                @RequestParam("hour") int hour,
-                @RequestParam("minute") int minute,
-                Authentication authentication,
-                Model model) {
+    @ResponseBody
+    YummyResponse save(@RequestParam("year") int year,
+                       @RequestParam("month") int month,
+                       @RequestParam("day") int day,
+                       @RequestParam("hour") int hour,
+                       @RequestParam("minute") int minute,
+                       Authentication authentication) {
 
+        YummyResponse response = new YummyResponse();
         // pickupDate
         Calendar date = Calendar.getInstance();
         date.set(year, month, day, hour, minute);
@@ -91,10 +90,10 @@ public class ShoppingCartController {
 
         Date startDate = fulfillStartTime(orderPrepareTime, pickupTime);
         if (startDate == null) {
-            model.addAttribute("status", "fail");
-            model.addAttribute("error", "pickup time could not fulfill");
-            model.addAttribute("earliest_time", getEarliestDate(getOrderPrepareTime(orderItems)));
-            return "shopping/picktime";
+            response.setError("pickup time could not fulfill");
+            response.setStatus("fail");
+            response.setEarlistTime(getEarliestDate(getOrderPrepareTime(orderItems)));
+            return response;
         }
 
         Order order = new Order();
@@ -111,8 +110,9 @@ public class ShoppingCartController {
         order.setStatus("not started");
 
         orderService.saveOrder(order);
-        model.addAttribute("status", "success");
-        return "shopping/picktime";
+
+        response.setStatus("success");
+        return response;
     }
 
     private OrderItem getOrderItem(Authentication authentication, long item_id) {
