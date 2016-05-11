@@ -29,7 +29,7 @@ public class ScheduledTasks {
         worker("chief1");
     }
 
-    //@Scheduled(cron = "0 0 6 * * ?")
+    //@Scheduled(cron = "0 0 5 * * ?")
     @Scheduled(fixedDelay = 50000)
     public void chief2() {
         System.out.println("worker2, threadId: " + Thread.currentThread().getId() +
@@ -37,7 +37,7 @@ public class ScheduledTasks {
         worker("chief2");
     }
 
-    //@Scheduled(cron = "0 0 6 * * ?")
+    //@Scheduled(cron = "0 0 5 * * ?")
     @Scheduled(fixedDelay = 50000)
     public void chief3() {
         System.out.println("worker3, threadId: " + Thread.currentThread().getId() +
@@ -74,7 +74,7 @@ public class ScheduledTasks {
                 System.out.println(chiefId + ", threadId " + Thread.currentThread().getId() +
                         " , order " + order.getId() + " begin to cooke");
                 try {
-                    // monitor cooking
+                    // emulate cooking
                     Thread.sleep(order.getPrepare_time() * 60 * 1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
