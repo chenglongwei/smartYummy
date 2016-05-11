@@ -170,9 +170,9 @@ public class ShoppingCartController {
 
     /**
      * Basic check of this submitted order,
-     * check pickup time is possible
-     * check between 6:00 to 21:00
-     *
+     * check pickup time is possible,
+     * check between 6:00 to 21:00,
+     * check in 30 days from now.
      * @param prepareTime
      * @param pickupTime
      * @return
@@ -193,6 +193,12 @@ public class ShoppingCartController {
         long endHour = DateUtils.getFragmentInDays(pickupTime, Calendar.DAY_OF_YEAR);
         if (endHour > 21) {
             System.out.println("end hour is " + endHour);
+            return false;
+        }
+
+        // only allow 30 days
+        if (pickupTime.after(DateUtils.addDays(new Date(), 30))) {
+            System.out.println("pickup time exceeds 30 days");
             return false;
         }
 
