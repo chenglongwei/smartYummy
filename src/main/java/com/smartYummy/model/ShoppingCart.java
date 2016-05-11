@@ -25,7 +25,8 @@ public class ShoppingCart implements Serializable {
     }
 
     public void removeItem(OrderItem orderItem) {
-        orderItems.remove(orderItem);
+        OrderItem foundItem = findOrderItem(orderItem.getId());
+        orderItems.remove(foundItem);
     }
 
     // only update order item quantity
