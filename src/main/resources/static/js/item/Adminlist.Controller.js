@@ -17,15 +17,8 @@ angular.module('smartYummy.app').controller('Adminlist.Controller', function ($s
     $scope.changeTag = function(item_id) {
         //$http.post('/sendcode?email=' + vm.email);
 
-        $http.post('/item/update/tag', item);
+        $http.post('/item/update/tag?id=' + item_id);
+        $window.location.href = '/item/adminlist';
     }
-
-    //$scope.register = function(email, pwd1, pwd2, code) {
-    //    //$http.post('/sendcode?email=' + vm.email);
-    //    //
-    //    //$http.post('/register?email=' + email + '&password1=' + pwd1 + '&password2=' + pwd2 + '&code=' + code);
-    //    //$window.location.href = '/login';
-    //
-    //}
 
 });

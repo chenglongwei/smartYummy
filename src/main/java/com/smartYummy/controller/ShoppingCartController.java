@@ -3,9 +3,7 @@ package com.smartYummy.controller;
 import com.smartYummy.model.CurrentUser;
 import com.smartYummy.model.Order;
 import com.smartYummy.model.OrderItem;
-import com.smartYummy.service.ItemService;
-import com.smartYummy.service.OrderService;
-import com.smartYummy.service.ShoppingCartService;
+import com.smartYummy.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -16,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +29,9 @@ public class ShoppingCartController {
     private OrderService orderService;
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
@@ -61,7 +63,25 @@ public class ShoppingCartController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     String getItems(Model model) {
-        model.addAttribute("order_items", shoppingCartService.getOrderItems());
+//        model.addAttribute("order_items", shoppingCartService.getOrderItems());
+
+//        ItemServiceImpl itemService = new ItemServiceImpl();
+//        UserServiceImpl userService = new UserServiceImpl();
+        List<OrderItem> tmpData = new ArrayList<OrderItem>();
+        try {
+            for (int i = 0; i < 3; i++) {
+                OrderItem a = new OrderItem();
+                a.setItem(itemService.findByID(i + 1));
+                a.setQuantity(1);
+                a.setUser(userService.findByID(4));
+                tmpData.add(a);
+            }
+
+        } catch (Exception e) {
+
+        }
+
+        model.addAttribute("order_items", tmpData);
         return "shopping/list";
     }
 
