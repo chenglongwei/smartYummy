@@ -25,13 +25,13 @@ public class ShoppingCart implements Serializable {
     }
 
     public void removeItem(OrderItem orderItem) {
-        OrderItem foundItem = findOrderItemByItemId(orderItem.getId());
+        OrderItem foundItem = findOrderItemByItemId(orderItem.getItem().getId());
         orderItems.remove(foundItem);
     }
 
     // only update order item quantity
     public void updateItem(OrderItem orderItem) {
-        OrderItem foundItem = findOrderItemByItemId(orderItem.getId());
+        OrderItem foundItem = findOrderItemByItemId(orderItem.getItem().getId());
         if (foundItem != null) {
             foundItem.setQuantity(orderItem.getQuantity());
         }
