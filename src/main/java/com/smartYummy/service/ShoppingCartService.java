@@ -12,5 +12,6 @@ public interface ShoppingCartService {
     ShoppingCart addItem(OrderItem orderItem);
     ShoppingCart removeItem(OrderItem orderItem);
     ShoppingCart updateItem(OrderItem orderItem);
+    void clear();
     List<OrderItem> getOrderItems();
 }

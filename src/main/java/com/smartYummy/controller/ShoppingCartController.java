@@ -122,6 +122,9 @@ public class ShoppingCartController {
         orderService.saveOrder(order);
 
         response.setStatus("success");
+
+        // clear shopping cart
+        shoppingCartService.clear();
         return response;
     }
 

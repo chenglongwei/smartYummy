@@ -42,6 +42,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
+    public void clear() {
+        ShoppingCart shoppingCart = getShoppingCartFromSession();
+        shoppingCart.clear();
+        updateShoppingCartInSession(shoppingCart);
+    }
+
+    @Override
     public List<OrderItem> getOrderItems() {
         ShoppingCart shoppingCart = getShoppingCartFromSession();
         return shoppingCart.getOrderItems();
