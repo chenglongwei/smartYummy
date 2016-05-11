@@ -15,7 +15,7 @@ public class ShoppingCart implements Serializable {
     }
 
     public void addItem(OrderItem orderItem) {
-        OrderItem foundItem = findOrderItem(orderItem.getId());
+        OrderItem foundItem = findOrderItemByItemId(orderItem.getItem().getId());
         if (foundItem == null) {
             orderItems.add(orderItem);
         } else {
@@ -25,13 +25,13 @@ public class ShoppingCart implements Serializable {
     }
 
     public void removeItem(OrderItem orderItem) {
-        OrderItem foundItem = findOrderItem(orderItem.getId());
+        OrderItem foundItem = findOrderItemByItemId(orderItem.getId());
         orderItems.remove(foundItem);
     }
 
     // only update order item quantity
     public void updateItem(OrderItem orderItem) {
-        OrderItem foundItem = findOrderItem(orderItem.getId());
+        OrderItem foundItem = findOrderItemByItemId(orderItem.getId());
         if (foundItem != null) {
             foundItem.setQuantity(orderItem.getQuantity());
         }
@@ -45,9 +45,9 @@ public class ShoppingCart implements Serializable {
         this.orderItems = orderItems;
     }
 
-    private OrderItem findOrderItem(long id) {
+    private OrderItem findOrderItemByItemId(long itemID) {
         for (OrderItem orderItem : orderItems) {
-            if (orderItem.getId() == id) {
+            if (orderItem.getItem().getId() == itemID) {
                 return orderItem;
             }
         }
