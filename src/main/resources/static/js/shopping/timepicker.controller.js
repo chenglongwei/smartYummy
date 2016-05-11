@@ -64,13 +64,19 @@ angular.module('smartYummy.app').controller('Timepicker.Controller', function ($
             + '&hour=' + hh
             + '&minute=' + min
         ).then(handleSuccess, handleError);
-        $window.location.href = '/shopping/picktime';
 
 
     }
 
     function handleSuccess(res) {
-        return res.data;
+        if (res.data.status=='success') {
+            $window.alert('Order Confirmed.');
+            $window.location.href='/';
+        }
+        else {
+            //$window.alert('Sorry, the order can not be fullfilled in your required time. Our earliest available );
+            $window.alert(res.data.error);
+        }
     }
 
     function handleError(res) {

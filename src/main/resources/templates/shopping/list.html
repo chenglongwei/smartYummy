@@ -203,7 +203,8 @@
                                     </div>
                                 </td>
 
-                                <td th:text="${orderitem.quantity}*${orderitem.item.price}" style = 'vertical-align: middle;'></td>
+                                <!--<td th:text="${orderitem.quantity}*${orderitem.item.price}" style = 'vertical-align: middle;'></td>-->
+                                <td th:text="${#numbers.formatDecimal(orderitem.quantity*orderitem.item.price, 0, 2)}" style = 'vertical-align: middle;'></td>
                                 <!--<td style = 'vertical-align: middle;'>-->
                                     <!--<span>-->
                                         <!--<span class="glyphicon glyphicon-trash" aria-hidden="false" th:attr="ng-click='removeItem(' + ${orderitem.item.id} + ')'"></span>-->
