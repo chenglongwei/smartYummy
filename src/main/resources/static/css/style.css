@@ -35,8 +35,7 @@ body {
 }
 
 .widget {
-    width: 100%;
-    max-width: 430px;
+    width: 430px;
     height: 452px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     background-color: #fff;
