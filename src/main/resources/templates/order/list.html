@@ -23,7 +23,6 @@
             <td>Pickup Time</td>
             <td>Status</td>
             <th>Action</th>
-            <th>&nbsp;</th>
         </tr>
         </thead>
         <tbody>
@@ -32,7 +31,7 @@
         </tr>
         <tr th:each="order : ${orders}" ng-model="vm.order">
                 <td id = "id" name = "id" th:text="${order.id}" th:value="${order.id}"></td>
-                <td id = "order.user" th:text="${order.user}"></td>
+                <td id = "order.user" th:text="${order.user.email}"></td>
                 <td id = "order.pickup_time" th:text="${order.pickup_time}"></td>
                 <td id = "order.status" th:text="${order.status}"></td>
                 <td>
