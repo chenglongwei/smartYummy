@@ -66,7 +66,6 @@ public class ShoppingCartController {
     String getItems(Model model) {
         List<OrderItem> orderItems = shoppingCartService.getOrderItems();
         model.addAttribute("order_items", orderItems);
-        model.addAttribute("earliest_time", getEarliestDate(getOrderPrepareTime(orderItems)));
         return "shopping/list";
     }
 
@@ -87,12 +86,15 @@ public class ShoppingCartController {
         System.out.println("pickup time " + pickupTime.toString());
 
         // order time
-        int orderPrepareTime = getOrderPrepareTime(shoppingCartService.getOrderItems());
+        List<OrderItem> orderItems = shoppingCartService.getOrderItems();
+        int orderPrepareTime = getOrderPrepareTime(orderItems);
 
         Date startDate = fulfillStartTime(orderPrepareTime, pickupTime);
         if (startDate == null) {
+            model.addAttribute("status", "fail");
             model.addAttribute("error", "pickup time could not fulfill");
-            return "shopping/list";
+            model.addAttribute("earliest_time", getEarliestDate(getOrderPrepareTime(orderItems)));
+            return "shopping/picktime";
         }
 
         Order order = new Order();
@@ -109,7 +111,8 @@ public class ShoppingCartController {
         order.setStatus("not started");
 
         orderService.saveOrder(order);
-        return "item/list";
+        model.addAttribute("status", "success");
+        return "shopping/picktime";
     }
 
     private OrderItem getOrderItem(Authentication authentication, long item_id) {
@@ -173,6 +176,7 @@ public class ShoppingCartController {
      * check pickup time is possible,
      * check between 6:00 to 21:00,
      * check in 30 days from now.
+     *
      * @param prepareTime
      * @param pickupTime
      * @return
