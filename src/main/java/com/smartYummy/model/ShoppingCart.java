@@ -37,6 +37,10 @@ public class ShoppingCart implements Serializable {
         }
     }
 
+    public void clear() {
+        orderItems.clear();
+    }
+
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
