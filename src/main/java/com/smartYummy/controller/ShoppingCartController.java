@@ -100,9 +100,10 @@ public class ShoppingCartController {
 
         Date startDate = fulfillStartTime(orderPrepareTime, pickupTime);
         if (startDate == null) {
-            response.setError("pickup time could not fulfill");
+            String error = "pickup time could not fulfill, the earliest time is ";
+            error += getEarliestDate(getOrderPrepareTime(orderItems));
+            response.setError(error);
             response.setStatus("fail");
-            response.setEarlistTime(getEarliestDate(getOrderPrepareTime(orderItems)));
             return response;
         }
 

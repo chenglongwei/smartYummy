@@ -7,7 +7,6 @@ import java.util.Date;
  */
 public class YummyResponse {
     private String status;
-    private Date earlistTime;
     private String error;
 
     public String getStatus() {
@@ -16,14 +15,6 @@ public class YummyResponse {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Date getEarlistTime() {
-        return earlistTime;
-    }
-
-    public void setEarlistTime(Date earlistTime) {
-        this.earlistTime = earlistTime;
     }
 
     public String getError() {
