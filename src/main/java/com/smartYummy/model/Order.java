@@ -83,4 +83,12 @@ public class Order {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public Date getStart_time() {
+        return start_time;
+    }
+
+    public void setStart_time(Date start_time) {
+        this.start_time = start_time;
+    }
 }
