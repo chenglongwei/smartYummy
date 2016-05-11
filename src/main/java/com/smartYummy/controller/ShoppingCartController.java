@@ -67,6 +67,12 @@ public class ShoppingCartController {
         return "shopping/list";
     }
 
+    @RequestMapping(value = "/picktime", method = RequestMethod.GET)
+    String pickTime(Model model) {
+        return "shopping/picktime";
+    }
+
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
@@ -78,6 +84,10 @@ public class ShoppingCartController {
                        Authentication authentication) {
 
         YummyResponse response = new YummyResponse();
+
+        // month start with 0
+        month--;
+
         // pickupDate
         Calendar date = Calendar.getInstance();
         date.set(year, month, day, hour, minute);

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" ng-app = 'smartYummy.app' xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!--<html lang="en" ng-app = 'smartYummy.app' xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"-->
+      <!--xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<html lang="en" ng-app = 'smartYummy.app' >
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -173,7 +174,9 @@
 
                     <tr>
                         <td>
-                            <input type="text" class="form-control" ng-model = "vm.yy" placeholder='Year' width="80pt"/>
+                            <!--<input type="text" class="form-control" th:attr="ng-model='vm.yy', placeholder='Year', width='80pt'"/>-->
+                            <!--<input type="text" class="form-control" ng-model='$scope.yy' placeholder='Year' width='80pt'/>-->
+                            <input type="text" class="form-control" ng-model = "vm.yy" placeholder='Year' width='80pt'/>
                         </td>
                         <td>
                             <input type="text" class="form-control" ng-model = "vm.mm" placeholder='Month'/>
@@ -190,7 +193,7 @@
                     </tr>
                     <tr>
                         <div class="btn-group">
-                            <button class="btn btn-primary" ng-click='confirmTime()'>Validate</button>
+                            <button class="btn btn-primary" ng-click='confirmTime(vm.yy, vm.mm, vm.dd, vm.hh, vm.min)'>Validate</button>
                         </div>
                     </tr>
                 </div>

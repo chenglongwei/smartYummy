@@ -26,7 +26,7 @@ angular.module('smartYummy.app').controller('Cart.Controller', function ($scope,
             $window.location.href = '/shopping/list';
         }
         else {
-            $http.post( '/shopping/update?item_id=' + item_id + '&quantity=' + (quantity + 1) );
+            $http.post( '/shopping/update?item_id=' + item_id + '&quantity=' + (quantity - 1) );
             $window.location.href = '/shopping/list';
         }
     }
