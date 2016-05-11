@@ -1,0 +1,24 @@
+1,200,appetizer,Egg Rolls,NULL,10,4.99,1
+2,200,appetizer,Pork Stickers,NULL,5,4.99,1
+3,400,appetizer,Wonton Soup,NULL,10,4.99,1
+4,300,appetizer,Big Pancake,NULL,5,3.99,1
+5,350,appetizer,Dumpling,NULL,15,5.99,1
+6,180,appetizer,Chinese Donut,NULL,5,1.99,1
+7,550,main,Fried Rice,NULL,10,7.99,1
+8,620,main,Chew Mein,NULL,10,7.99,1
+9,600,main,Noodle Soup,NULL,10,8.99,1
+10,660,main,Sour Chicken,NULL,15,9.99,1
+11,680,main,Spicy Pork,NULL,15,9.99,1
+12,650,main,Fried Fish,NULL,10,9.99,1
+13,150,dessert,Ice Cream,NULL,2,3.99,1
+14,100,dessert,Moon Cake,NULL,2,1.99,1
+15,100,dessert,Rice Ball,NULL,5,3.99,1
+16,240,dessert,Smoothie,NULL,5,4.99,1
+17,100,dessert,Cookie,NULL,2,1.99,1
+18,180,dessert,Coconut Bar,NULL,2,1.99,1
+19,0,drink,Ice Tea,NULL,6,2.99,1
+20,0,drink,Black Tea,NULL,5,3.99,1
+21,0,drink,Green Tea,NULL,5,3.99,1
+22,150,drink,Soda,NULL,2,1.99,1
+23,120,drink,Apple Juice,NULL,5,3.99,1
+24,150,drink,Dr.Pepper,NULL,2,1.99,1
