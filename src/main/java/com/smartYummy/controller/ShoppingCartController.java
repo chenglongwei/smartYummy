@@ -6,7 +6,6 @@ import com.smartYummy.model.OrderItem;
 import com.smartYummy.service.ItemService;
 import com.smartYummy.service.OrderService;
 import com.smartYummy.service.ShoppingCartService;
-import com.smartYummy.service.UserService;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -107,6 +106,7 @@ public class ShoppingCartController {
         order.setPickup_time(pickupTime);
         order.setPrepare_time(orderPrepareTime);
         order.setStart_time(startDate);
+        order.setStatus("not started");
 
         orderService.saveOrder(order);
         return "item/list";
