@@ -4,10 +4,13 @@ import com.smartYummy.model.Order;
 import com.smartYummy.model.OrderItem;
 import com.smartYummy.repository.OrderItemRepository;
 import com.smartYummy.repository.OrderRepository;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,5 +45,19 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteByID(long id) {
         orderRepository.delete(id);
+    }
+
+    @Override
+    public List<Order> findSameDayOrders(Date date) {
+        List<Order> orders = orderRepository.findAll();
+        List<Order> res = new ArrayList<Order>();
+
+        for (Order order : orders) {
+            if (DateUtils.isSameDay(date, order.getPickup_time())) {
+                res.add(order);
+            }
+        }
+
+        return res;
     }
 }

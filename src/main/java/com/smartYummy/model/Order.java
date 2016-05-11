@@ -25,8 +25,15 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date pickup_time;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date start_time;
+
+    // unit minutes
     private int prepare_time;
 
+    /**
+     * including: not started; started; finished
+     */
     private String status;
 
     public long getId() {

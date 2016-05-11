@@ -90,16 +90,19 @@ public class UserController {
     @RequestMapping(value = "/sendcode", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void sendMail(@RequestParam("email") String email) {
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(email);
-        mailMessage.setSubject("SmartYummy: Registration Code");
+        // produce a random code
         String randomCode = getRandomCode();
-        mailMessage.setText("Registration Code is: " + randomCode);
-        javaMailSender.send(mailMessage);
 
         // add redis the temp code
         redisTemplate.opsForValue().set(getVerifyEmailKey(email), randomCode);
         redisTemplate.expire(getVerifyEmailKey(email), 5, TimeUnit.HOURS);
+
+        // send email
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(email);
+        mailMessage.setSubject("SmartYummy: Registration Code");
+        mailMessage.setText("Registration Code is: " + randomCode + ", code expires in 5 minutes.");
+        javaMailSender.send(mailMessage);
     }
 
     private String getVerifyEmailKey(String email) {

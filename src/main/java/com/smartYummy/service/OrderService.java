@@ -1,9 +1,9 @@
 package com.smartYummy.service;
 
 import com.smartYummy.model.Order;
-import com.smartYummy.model.User;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,4 +15,5 @@ public interface OrderService {
     List<Order> getOrders(long userId);
     Order findByID(long id);
     void deleteByID(long id);
+    List<Order> findSameDayOrders(Date date);
 }
