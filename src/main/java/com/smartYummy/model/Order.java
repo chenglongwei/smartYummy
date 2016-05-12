@@ -1,5 +1,7 @@
 package com.smartYummy.model;
 
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -19,7 +21,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch=FetchType.EAGER)
     private List<OrderItem> orderItems;
 
     @Temporal(TemporalType.TIMESTAMP)
