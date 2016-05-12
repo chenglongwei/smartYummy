@@ -45,7 +45,7 @@ public class ScheduledTasks {
         worker("chief3");
     }
 
-    private Order pickOrder() {
+    synchronized private Order pickOrder() {
         Date current = new Date();
         List<Order> orders = orderService.findSameDayOrders(current);
         for (Order order : orders) {
