@@ -228,6 +228,7 @@ public class ShoppingCartController {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 21);
         calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
         Date closeDate = calendar.getTime();
         Date latestDate = DateUtils.addMinutes(closeDate, -prepareTime);
 
@@ -237,7 +238,7 @@ public class ShoppingCartController {
         while (current.compareTo(latestDate) < 0) {
             Date res = fulfillStartTime(prepareTime, current);
             if (res != null) {
-                return res;
+                return current;
             }
 
             current = DateUtils.addMinutes(current, 1);
