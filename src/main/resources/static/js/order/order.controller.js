@@ -5,7 +5,7 @@
 /**
  * Created by StarRUC on 5/10/16.
  */
-var app = angular.module('smartYummy.app', ['ui.bootstrap']);
+var app = angular.module('smartYummy.app', []);
 
 
 angular.module('smartYummy.app').controller('Order.Controller', function ($scope, $log, $http, $timeout, $attrs, $window) {

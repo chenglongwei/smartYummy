@@ -74,7 +74,7 @@ public class ShoppingCartController {
 
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.CREATED)
+    @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     YummyResponse save(@RequestParam("year") int year,
                        @RequestParam("month") int month,
