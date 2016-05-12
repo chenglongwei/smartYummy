@@ -209,7 +209,7 @@
             </div>
             <div class='wrapper'>
                 <div class='widget' th:each="item : ${items}" ng-controller="cartCtrl" style="width: 378px;float: left;">
-                    <div class='widget__photo' th:style="'background:url(' + @{../images/} + ${item.id} + '.jpg' + ') no-repeat center/cover;'"></div>
+                    <div class='widget__photo' th:style="'background:url(' + @{/images/} + ${item.id} + '.jpg' + ') no-repeat center/cover;'"></div>
                     <div class='widget__button' th:attr="ng-click='addToCart(' + ${item.id} + ')'" >Add to Shopping Cart
                     <!--<div class="widget__button">-->
                         <!--<a href="#"  th:attr="ng-click='addToCart(' + ${item.id} + ')'" >Add to Shopping Cart</a>-->
