@@ -88,7 +88,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/sendcode", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+//    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    @ResponseStatus(value = HttpStatus.OK)
     public void sendMail(@RequestParam("email") String email) {
         // produce a random code
         String randomCode = getRandomCode();

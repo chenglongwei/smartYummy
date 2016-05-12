@@ -15,6 +15,7 @@ angular.module('smartYummy.app').controller('Register.Controller', function ($sc
     $scope.sendCode = function(email) {
         //$http.post('/sendcode?email=' + vm.email);
 
+        //$http.post('/sendcode?email=' + email).then(handleSuccess, handleError);
         $http.post('/sendcode?email=' + email);
     }
 
@@ -24,6 +25,25 @@ angular.module('smartYummy.app').controller('Register.Controller', function ($sc
         $http.post('/register?email=' + email + '&password1=' + pwd1 + '&password2=' + pwd2 + '&code=' + code);
         $window.location.href = '/login';
 
+    }
+
+    function handleSuccess(res) {
+        if (res.data.status=='success') {
+            $window.alert('Order Cancelled successfully!');
+            $window.location.href = '/order/list';
+        }
+        else {
+            //$window.alert('Sorry, the order can not be fullfilled in your required time. Our earliest available );
+            $window.alert('Order can not be cancelled because it is already in process!');
+
+        }
+        //$window.alert('Order Cancelled successfully!');
+        //$window.location.href = '/order/list';
+    }
+
+    function handleError(res) {
+        $window.alert('Order can not be cancelled because it is already in process!');
+        //$window.location.href = '/order/list';
     }
 
 });

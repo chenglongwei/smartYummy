@@ -60,6 +60,7 @@ public class ItemController {
         if (result.hasErrors()) {
             throw new YummyException("bind item has errors");
         }
+        item.setTag(1);
         itemService.insertItem(item);
         redirect.addFlashAttribute("globalMessage", "Successfully created a new item");
         return "redirect:/item/create";

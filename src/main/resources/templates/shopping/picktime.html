@@ -100,31 +100,44 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="/menu">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
+                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <!--<li  ng-repeat = 'category in menu_list track by $index' ><a ng-click = setTitle($index) ng-href = "{{'/menu/' + category}}" >{{category}}</a></li>-->
+                        <li><a href="/item/list/appetizer">Appetizer</a></li>
+                        <li><a href="/item/list/main">Main Course</a></li>
+                        <li><a href="/item/list/dessert">Desert</a></li>
+                        <li><a href="/item/list/drink">Drink</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/menu/alldish">All</a></li>
+                        <li><a href="/item/list">All</a></li>
                     </ul>
                     <!--starter, main course, noodle, rice, beverage, dessert, soup-->
 
                 </li>
-                <li class="dropdown">
-                    <a class="dropbtn" href="/app/shoppingCart">Shopping Cart</a>
-                </li>
 
-                <li class="dropdown">
-                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/app/#/account">Account</a></li>
-                        <li><a href="/app/#/address">Address</a></li>
-                        <li><a href="/app/#/order">Order</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="/login">Logout</a></li>
-                    </ul>
+                <!--<li class="dropdown">-->
+                <!--<a class="dropbtn" href="/app/shoppingCart">Shopping Cart</a>-->
+                <!--</li>-->
+
+                <li>
+                    <a href="/shopping/list">Shopping Cart</a>
+                </li>
+                <!--<li class="dropdown">-->
+                <!--<a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>-->
+                <!--<ul class="dropdown-menu">-->
+                <!--&lt;!&ndash;<li><a href="/app/#/account">Account</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><a href="/app/#/address">Address</a></li>&ndash;&gt;-->
+                <!--<li><a href="/order/list">Order</a></li>-->
+                <!--<li role="separator" class="divider"></li>-->
+                <!--<li><a href="/logout">Logout</a></li>-->
+                <!--</ul>-->
+                <!--</li>-->
+                <li>
+                    <a href="/order/list">Order</a>
+                </li>
+                <li>
+                    <a href="/logout">Logout</a>
                 </li>
 
             </ul>

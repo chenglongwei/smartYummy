@@ -27,6 +27,10 @@
                 <div class="pull-right">
                     <a href="/item/adminlist" th:href="@{/item/adminlist}">See All Item List</a>
                 </div>
+				<br/>
+				<div class="pull-right">
+					<a href="/logout" th:href="@{/logout}">Logout</a>
+				</div>
 				<div class="main-login main-center">
 					<form th:action="@{/item/create}"  class="form-horizontal" method="post" >
 						
@@ -71,11 +75,11 @@
 						</div>
 
 						<div class="form-group">
-							<label for="prepare_time" class="cols-sm-2 control-label">Preparation Time</label>
+							<label for="prepareTime" class="cols-sm-2 control-label">Preparation Time</label>
 							<div class="cols-sm-10">
 								<div class="input-group">
 									<span class="input-group-addon"></span>
-									<input type="text" class="form-control" name="prepare_time" id="prepare_time"  placeholder="Enter Preparation Time"/>
+									<input type="text" class="form-control" name="prepareTime" id="prepareTime"  placeholder="Enter Preparation Time"/>
 								</div>
 							</div>
 						</div>

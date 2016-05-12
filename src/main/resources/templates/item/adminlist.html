@@ -15,6 +15,11 @@
     <div class="pull-right">
         <a href="/item/create" th:href="@{/item/create}">Create Item Page</a>
     </div>
+    <br/>
+    <div class="pull-right">
+        <a href="/logout" th:href="@{/logout}">Logout</a>
+    </div>
+
     <table class="table table-bordered table-striped" ng-controller="Adminlist.Controller">
         <thead>
         <tr>
@@ -36,7 +41,7 @@
                 <td id = "item.tag" th:text="${item.tag}"></td>
                 <td>
                     <div class="btn-group">
-                        <button class="btn btn-primary" th:attr="ng-click='changeTag(' + ${item.id} + ')'" style="background-color:dimgray; border: none">Disable</button>
+                        <button class="btn btn-primary" th:attr="ng-click='changeTag(' + ${item.id} + ')'" style="background-color:dimgray; border: none">Change Status</button>
                     </div>
                 </td>
         </tr>
