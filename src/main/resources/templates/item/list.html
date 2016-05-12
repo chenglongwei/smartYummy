@@ -222,11 +222,10 @@
                                 4.3
                             </div>
                         </div>
-                        <div class='widget__name' th:text="${item.id} + '  '+${item.name}"/>
-                        <div class='widget__type' th:text="${item.category}"/>
+                        <div class='widget__name' th:text="'id: '+ ${item.id} + '.  '+${item.name}"/>
+                        <div class='widget__type' th:text="'Category: '+ ${item.category}"/>
                         <div class='widget__info'>
-                            <span th:text="${item.prepareTime}"></span>
-                            <span>15 minute walk</span>
+                            <span th:text="'Prepare Time: ' + ${item.prepareTime} + ' min'"></span>
                         </div>
                         <div class='widget__hidden'>
                             <hr/>
