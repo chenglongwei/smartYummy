@@ -9,9 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -55,15 +58,40 @@ public class ItemController {
         return "item/create";
     }
 
+//    @RequestMapping(value = "/create", method = RequestMethod.POST)
+//    public String create(@Valid Item item, BindingResult result, RedirectAttributes redirect) {
+//        if (result.hasErrors()) {
+//            throw new YummyException("bind item has errors");
+//        }
+//        item.setTag(1);
+//        itemService.insertItem(item);
+//        redirect.addFlashAttribute("globalMessage", "Successfully created a new item");
+//        return "redirect:/item/create";
+//    }
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid Item item, BindingResult result, RedirectAttributes redirect) {
+    public String create(@Valid Item item, MultipartFile file, BindingResult result, RedirectAttributes redirect) {
         if (result.hasErrors()) {
             throw new YummyException("bind item has errors");
         }
         item.setTag(1);
         itemService.insertItem(item);
+        long id = item.getId();
+        try {
+            multipartToFile(file, "/Users/StarRUC/git/smartYummy/images/" + id + ".jpg");
+        }catch(Exception e) {
+            e.printStackTrace();
+
+        }
         redirect.addFlashAttribute("globalMessage", "Successfully created a new item");
         return "redirect:/item/create";
+    }
+
+    public File multipartToFile(MultipartFile multipart, String name) throws IllegalStateException, IOException
+    {
+        File convFile = new File(name);
+        multipart.transferTo(convFile);
+        return convFile;
     }
 
     @RequestMapping(value = "/adminlist", method = RequestMethod.GET)

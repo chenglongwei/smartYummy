@@ -1,7 +1,7 @@
 /**
  * Created by StarRUC on 5/10/16.
  */
-var app = angular.module('smartYummy.app', ['ui.bootstrap']);
+var app = angular.module('smartYummy.app', []);
 
 
 angular.module('smartYummy.app').controller('Register.Controller', function ($scope, $log, $http, $timeout, $attrs, $window) {
@@ -13,37 +13,34 @@ angular.module('smartYummy.app').controller('Register.Controller', function ($sc
     vm.code = null;
 
     $scope.sendCode = function(email) {
-        //$http.post('/sendcode?email=' + vm.email);
-
-        //$http.post('/sendcode?email=' + email).then(handleSuccess, handleError);
-        $http.post('/sendcode?email=' + email);
+        $http.post('/sendcode?email=' + email).then(handleVeriCodeSuccess, handleVeriCodeError);
     }
 
     $scope.register = function(email, pwd1, pwd2, code) {
-        //$http.post('/sendcode?email=' + vm.email);
-
-        $http.post('/register?email=' + email + '&password1=' + pwd1 + '&password2=' + pwd2 + '&code=' + code);
-        $window.location.href = '/login';
-
+        $http.post('/register?email=' + email + '&password1=' + pwd1 + '&password2=' + pwd2 + '&code=' + code)
+            .then(handleRegisterSuccess, handleRegisterError);
     }
 
-    function handleSuccess(res) {
+    function handleVeriCodeSuccess(res) {
+        $window.alert('Verification Code is sent successfully! Please check in your email.');
+    }
+
+    function handleVeriCodeError(res) {
+        $window.alert('Send Verification Code failed! Please try it again.');
+    }
+
+    function handleRegisterSuccess(res) {
         if (res.data.status=='success') {
-            $window.alert('Order Cancelled successfully!');
-            $window.location.href = '/order/list';
-        }
-        else {
-            //$window.alert('Sorry, the order can not be fullfilled in your required time. Our earliest available );
-            $window.alert('Order can not be cancelled because it is already in process!');
+            $window.alert('Register Account Successfully!');
+            $window.location.href = '/login';
+        } else {
+            $window.alert(res.data.error);
 
         }
-        //$window.alert('Order Cancelled successfully!');
-        //$window.location.href = '/order/list';
     }
 
-    function handleError(res) {
-        $window.alert('Order can not be cancelled because it is already in process!');
-        //$window.location.href = '/order/list';
+    function handleRegisterError(res) {
+        $window.alert('Register Account Failed!');
     }
 
 });

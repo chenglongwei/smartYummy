@@ -21,8 +21,8 @@ angular.module('smartYummy.app').controller('Cart.Controller', function ($scope,
 
     $scope.decQty = function(item_id, quantity) {
         if (quantity == 1) {
-            $window.alert('Only quantity of current item is 1, can not decrease any more. ' +
-                'Please remove the item if you would like to.');
+            $window.alert('The quantity of current item is 1, can not decrease any more. ' +
+                'Please remove the item if you still want to decrease the quantity.');
             $window.location.href = '/shopping/list';
         }
         else {

@@ -6,6 +6,7 @@ package com.smartYummy.controller;
 
 import com.smartYummy.model.Role;
 import com.smartYummy.model.User;
+import com.smartYummy.model.YummyResponse;
 import com.smartYummy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -15,10 +16,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -55,22 +53,33 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(@RequestParam("email") String email,
+    @ResponseStatus(value = HttpStatus.OK)
+    @ResponseBody
+    YummyResponse register(@RequestParam("email") String email,
                            @RequestParam("password1") String password1,
                            @RequestParam("password2") String password2,
                            @RequestParam("code") String code,
                            RedirectAttributes redirect) {
 
+        YummyResponse response = new YummyResponse();
+
         // verify password1 is same with password2
         if (!password1.equals(password2)) {
-            redirect.addFlashAttribute("globalMessage", "Repeated password is not same!");
-            return "user/register";
+//            redirect.addFlashAttribute("globalMessage", "Repeated password is not same!");
+//            return "user/register";
+            response.setError("Repeated password is not same!");
+            response.setStatus("fail");
+            return response;
         }
         // verify code
         String verifiedCode = redisTemplate.opsForValue().get(getVerifyEmailKey(email));
         if (!code.equals(verifiedCode)) {
-            redirect.addFlashAttribute("globalMessage", "Email code is not verified!");
-            return "user/register";
+//            redirect.addFlashAttribute("globalMessage", "Email code is not verified!");
+//            return "user/register";
+            response.setError("Email code is not verified!");
+            response.setStatus("fail");
+            return response;
+
         }
 
         // create user
@@ -83,8 +92,11 @@ public class UserController {
 
         // insert into table
         userService.insertUser(user);
-        redirect.addFlashAttribute("globalMessage", "Successfully created a new item");
-        return "redirect:login";
+//        redirect.addFlashAttribute("globalMessage", "Successfully created a new item");
+//        return "redirect:login";
+        response.setStatus("success");
+        return response;
+
     }
 
     @RequestMapping(value = "/sendcode", method = RequestMethod.POST)

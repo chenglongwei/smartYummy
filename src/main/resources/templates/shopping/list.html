@@ -131,8 +131,6 @@
                 <hr/>
             </div>
             <div ng-hide = 'empty' class="carousel-content">
-                <span style = 'position: inherit; top: 15px; left: 10%' class="pull-left"><h3> $ {{totalPrice}}</h3></span>
-                <br/>
                 <div class="btn-group pull-right" role="group">
                     <!--<button type="button" class="btn btn-default" >-->
                         <a href="picktime">Check Out</a>
@@ -145,6 +143,10 @@
                     <div class="panel-body" >
 
                         <table class="table table-hover">
+                            <tr th:if="${order_items.empty}">
+                                <td colspan="11">No items</td>
+                            </tr>
+
                             <thead class="thead-default">
                             <tr>
                                 <th>Dish Image</th>
@@ -162,13 +164,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:if="${order_items.empty}">
-                                <td colspan="3">No items</td>
-                            </tr>
-
                             <!--<tr ng-repeat = "item in manager.items track by $index" >-->
                             <tr th:each="orderitem : ${order_items}">
                                 <td>
+                                    <!--<img style = "max-width:100px; height: auto; vertical-align: middle;"-->
                                     <img style = "max-width:100px; height: auto; vertical-align: middle;"
                                          th:attr="ng-src='/images/' + ${orderitem.item.id} +'.jpg'"/>
                                 </td>
@@ -177,39 +176,25 @@
                                 <td th:text="${orderitem.item.category}" style = 'vertical-align: middle;'></td>
                                 <td th:text="${orderitem.item.calories}" style = 'vertical-align: middle;'></td>
                                 <td th:text="${orderitem.item.price}" style = 'vertical-align: middle;'></td>
-                                <td>
+                                <td style = 'vertical-align: middle;'>
                                     <div class="btn-group">
-                                        <button class="btn btn-primary" th:attr="ng-click='decQty(' + ${orderitem.item.id} + ', ' + ${orderitem.quantity} + ')'" style="background-color:dimgray; border: none">-</button>
+                                        <button class="btn btn-primary" th:attr="ng-click='decQty(' + ${orderitem.item.id} + ', ' + ${orderitem.quantity} + ')'" style="background-color:dimgray; border: none; vertical-align: middle;">-</button>
                                     </div>
                                 </td>
 
                                 <td th:text="${orderitem.quantity}" style = 'vertical-align: middle;' class = "amount">
                                     <div class="input-group input-group-sm" style = "width: 100px">
-
-                                        <span class="input-group-btn">
-                                             <button class="btn btn-default" type="button" th:attr="ng-click='decQty(' + ${orderitem.item.id} + ')'">-</button>
-                                        </span>
                                         <input type="text" class="form-control" th:attr="ng-change='updatePrice()', ng-model=${orderitem.quantity}, placeholder=${orderitem.quantity}"/>
-                                        <span class="input-group-btn">
-                                             <button class="btn btn-default" type="button" th:attr="ng-click='incQty(' + ${orderitem.item.id} + ')'">+</button>
-                                        </span>
-
                                     </div>
                                 </td>
-                                <td>
+                                <td style = 'vertical-align: middle;'>
                                     <div class="btn-group">
-                                        <button class="btn btn-primary" th:attr="ng-click='incQty(' + ${orderitem.item.id} + ', ' + ${orderitem.quantity} + ')'" style="background-color:dimgray; border: none">+</button>
+                                        <button class="btn btn-primary" th:attr="ng-click='incQty(' + ${orderitem.item.id} + ', ' + ${orderitem.quantity} + ')'" style="background-color:dimgray; border: none; vertical-align: middle;">+</button>
                                     </div>
                                 </td>
 
-                                <!--<td th:text="${orderitem.quantity}*${orderitem.item.price}" style = 'vertical-align: middle;'></td>-->
                                 <td th:text="${#numbers.formatDecimal(orderitem.quantity*orderitem.item.price, 0, 2)}" style = 'vertical-align: middle;'></td>
-                                <!--<td style = 'vertical-align: middle;'>-->
-                                    <!--<span>-->
-                                        <!--<span class="glyphicon glyphicon-trash" aria-hidden="false" th:attr="ng-click='removeItem(' + ${orderitem.item.id} + ')'"></span>-->
-                                    <!--</span>-->
-                                <!--</td>-->
-                                <td>
+                                <td style = 'vertical-align: middle;'>
                                     <div class="btn-group">
                                         <button class="btn btn-primary" th:attr="ng-click='removeItem(' + ${orderitem.item.id} + ')'" style="background-color:dimgray; border: none">DELETE</button>
                                     </div>
@@ -222,17 +207,6 @@
 
                     </div>
                 </div>
-
-                <div class = "back-up">
-                    <a href="#">
-                        <button type="button" class="btn btn-default">
-
-                            <span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>
-
-                        </button>
-                    </a>
-                </div>
-
 
             </div>
             <br/>

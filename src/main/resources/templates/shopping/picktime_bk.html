@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" ng-app = 'smartYummy.app' xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!--<html lang="en" ng-app = 'smartYummy.app' xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"-->
+      <!--xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<html lang="en" ng-app = 'smartYummy.app' >
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -25,7 +26,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
     <script src="../js/angular-route.min.js"></script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
@@ -61,11 +61,23 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
-    <script src = "/js/item/adminlist.controller.js"></script>
+    <script src = "/js/shopping/cart.controller.js"></script>
 
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!--<link rel="stylesheet" href="/bower_components/angularjs-datetime-picker/angularjs-datetime-picker.css" />-->
+    <!--<script src="/bower_components/angularjs-datetime-picker/angularjs-datetime-picker.js"></script>-->
+    <script src="/js/shopping/timepicker.controller.js"></script>
 </head>
 
-<body ng-controller="Adminlist.Controller">
+<body  ng-controller = 'Timepicker.Controller'>
+
 <div class="brand">Smart Yummy Takeout</div>
 <div class="address-bar">1 Washington Sq | San Jose, CA 95192 | 123.456.7890</div>
 
@@ -99,16 +111,30 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="/item/list">All</a></li>
                     </ul>
+                    <!--starter, main course, noodle, rice, beverage, dessert, soup-->
+
                 </li>
+
+                <!--<li class="dropdown">-->
+                <!--<a class="dropbtn" href="/app/shoppingCart">Shopping Cart</a>-->
+                <!--</li>-->
 
                 <li>
                     <a href="/shopping/list">Shopping Cart</a>
                 </li>
-
+                <!--<li class="dropdown">-->
+                <!--<a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>-->
+                <!--<ul class="dropdown-menu">-->
+                <!--&lt;!&ndash;<li><a href="/app/#/account">Account</a></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><a href="/app/#/address">Address</a></li>&ndash;&gt;-->
+                <!--<li><a href="/order/list">Order</a></li>-->
+                <!--<li role="separator" class="divider"></li>-->
+                <!--<li><a href="/logout">Logout</a></li>-->
+                <!--</ul>-->
+                <!--</li>-->
                 <li>
                     <a href="/order/list">Order</a>
                 </li>
-
                 <li>
                     <a href="/logout">Logout</a>
                 </li>
@@ -125,53 +151,63 @@
         <div class="box">
             <div class="col-lg-12">
                 <hr/>
-                <h2 class="intro-text text-center">Admin Item List</h2>
+                <h2 class="intro-text text-center">Time Picker</h2>
                 <hr/>
             </div>
             <div ng-hide = 'empty' class="carousel-content">
                 <div class="panel panel-default">
 
-                    <div class="panel-body" >
+                    <!--Angular Case-->
+                    <!--<input datetime-picker th:attr="ng-model='date3', datetime-picker='', date-format='yyyy-MM-dd HH:mm:ss'" />-->
+                    <!--<input ng-model='date3' datetime-picker date-format='yyyy-MM-dd HH:mm:ss' />-->
 
-<!--<div class="container">-->
-                        <div class="pull-right">
-                            <a href="/item/create" th:href="@{/item/create}">Create Item Page</a>
-                        </div>
-                        <!--<br/>-->
-                        <!--<div class="pull-right">-->
-                            <!--<a href="/logout" th:href="@{/logout}">Logout</a>-->
+                    <!--Bootstrap Case-->
+                    <!--<div class="panel-body" >-->
+                        <!--<div style="overflow:hidden;">-->
+                            <!--<div class="form-group">-->
+                                <!--<div class="row">-->
+                                    <!--<div class="col-md-8">-->
+                                        <!--<div id="datetimepicker12"></div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<script type="text/javascript">-->
+                                <!--$(function () {-->
+                                    <!--$('#datetimepicker12').datetimepicker({-->
+                                        <!--inline: true,-->
+                                        <!--sideBySide: true-->
+                                    <!--});-->
+                                <!--});-->
+                            <!--</script>-->
                         <!--</div>-->
 
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                                <td>ID</td>
-                                <td>Name</td>
-                                <td>Category</td>
-                                <td>Tag</td>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:if="${items.empty}">
-                                <td colspan="3">No items</td>
-                            </tr>
-                            <tr th:each="item : ${items}">
-                                    <td id = "id" name = "id" th:text="${item.id}" th:value="${item.id}"></td>
-                                    <td id = "item.name" th:text="${item.name}"></td>
-                                    <td id = "item.category" th:text="${item.category}"></td>
-                                    <td id = "item.tag" th:text="${item.tag}"></td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button class="btn btn-primary" th:attr="ng-click='changeTag(' + ${item.id} + ')'" style="background-color:dimgray; border: none">Change Status</button>
-                                        </div>
-                                    </td>
-                            </tr>
+                    <!--</div>-->
 
-                            </tbody>
-                        </table>
 
-                    </div>
+                    <tr>
+                        <td>
+                            <!--<input type="text" class="form-control" th:attr="ng-model='vm.yy', placeholder='Year', width='80pt'"/>-->
+                            <!--<input type="text" class="form-control" ng-model='$scope.yy' placeholder='Year' width='80pt'/>-->
+                            <input type="text" class="form-control" ng-model = "vm.yy" placeholder='Year' width='80pt'/>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" ng-model = "vm.mm" placeholder='Month'/>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" ng-model = "vm.dd" placeholder='Day'/>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" ng-model = "vm.hh" placeholder='Hour'/>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" ng-model = "vm.min" placeholder='Minute'/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <div class="btn-group">
+                            <button class="btn btn-primary" ng-click='confirmTime(vm.yy, vm.mm, vm.dd, vm.hh, vm.min)'>Validate</button>
+                        </div>
+                    </tr>
                 </div>
 
             </div>
