@@ -114,10 +114,16 @@ public class ShoppingCartController {
         System.out.println(currentUser.getUser());
 
         order.setOrderItems(shoppingCartService.getOrderItems());
-        // pickupTime
+        // user pickup time
         order.setPickupTime(pickupTime);
+        // prepare time
         order.setPrepareTime(orderPrepareTime);
+        // order start time
         order.setStartTime(startDate);
+        // order create time
+        order.setCreateTime(new Date());
+        // order finish time
+        order.setFinishTime(DateUtils.addMinutes(startDate, orderPrepareTime));
         order.setStatus(Order.NOT_STARTED);
 
         orderService.saveOrder(order);
