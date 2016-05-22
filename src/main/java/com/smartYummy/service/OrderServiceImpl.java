@@ -60,4 +60,14 @@ public class OrderServiceImpl implements OrderService {
 
         return res;
     }
+
+    @Override
+    public List<Order> findOrdersByCreateTimeOrderByCreateTime(Date from, Date to) {
+        return orderRepository.findByCreateTimeBetweenOrderByCreateTime(from, to);
+    }
+
+    @Override
+    public List<Order> findOrdersByCreateTimeOrderByStartTime(Date from, Date to) {
+        return orderRepository.findByCreateTimeBetweenOrderByStartTime(from, to);
+    }
 }

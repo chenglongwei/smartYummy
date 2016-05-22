@@ -16,4 +16,6 @@ public interface OrderService {
     Order findByID(long id);
     void deleteByID(long id);
     List<Order> findSameDayOrders(Date date);
+    List<Order> findOrdersByCreateTimeOrderByCreateTime(Date from, Date to);
+    List<Order> findOrdersByCreateTimeOrderByStartTime(Date from, Date to);
 }

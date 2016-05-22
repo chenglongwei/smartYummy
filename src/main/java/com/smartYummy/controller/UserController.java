@@ -65,8 +65,6 @@ public class UserController {
 
         // verify password1 is same with password2
         if (!password1.equals(password2)) {
-//            redirect.addFlashAttribute("globalMessage", "Repeated password is not same!");
-//            return "user/register";
             response.setError("Repeated password is not same!");
             response.setStatus("fail");
             return response;
@@ -74,8 +72,6 @@ public class UserController {
         // verify code
         String verifiedCode = redisTemplate.opsForValue().get(getVerifyEmailKey(email));
         if (!code.equals(verifiedCode)) {
-//            redirect.addFlashAttribute("globalMessage", "Email code is not verified!");
-//            return "user/register";
             response.setError("Email code is not verified!");
             response.setStatus("fail");
             return response;
@@ -92,15 +88,12 @@ public class UserController {
 
         // insert into table
         userService.insertUser(user);
-//        redirect.addFlashAttribute("globalMessage", "Successfully created a new item");
-//        return "redirect:login";
         response.setStatus("success");
         return response;
 
     }
 
     @RequestMapping(value = "/sendcode", method = RequestMethod.POST)
-//    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @ResponseStatus(value = HttpStatus.OK)
     public void sendMail(@RequestParam("email") String email) {
         // produce a random code
