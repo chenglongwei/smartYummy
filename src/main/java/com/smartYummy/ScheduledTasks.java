@@ -54,6 +54,9 @@ public class ScheduledTasks {
                         -(60 + order.getPrepareTime()));
                 if (current.after(earliestStartTime)) {
                     order.setStatus(Order.STARTED);
+                    // update start time and finish time
+                    order.setStartTime(current);
+                    order.setFinishTime(DateUtils.addMinutes(current, order.getPrepareTime()));
                     orderService.saveOrder(order);
                     return order;
                 }
