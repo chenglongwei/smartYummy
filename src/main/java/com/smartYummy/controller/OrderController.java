@@ -27,7 +27,7 @@ public class OrderController {
     YummyResponse removeItem(@RequestParam("id") long id) {
         Order order = orderService.findByID(id);
         YummyResponse response = new YummyResponse();
-        if (!order.getStatus().equals("not started")) {
+        if (!order.getStatus().equals(Order.NOT_STARTED)) {
             System.out.println("delete a started order");
             response.setStatus("fail");
             return response;

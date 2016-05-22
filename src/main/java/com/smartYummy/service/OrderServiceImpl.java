@@ -53,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
         List<Order> res = new ArrayList<Order>();
 
         for (Order order : orders) {
-            if (DateUtils.isSameDay(date, order.getPickup_time())) {
+            if (DateUtils.isSameDay(date, order.getPickupTime())) {
                 res.add(order);
             }
         }

@@ -115,10 +115,10 @@ public class ShoppingCartController {
 
         order.setOrderItems(shoppingCartService.getOrderItems());
         // pickupTime
-        order.setPickup_time(pickupTime);
-        order.setPrepare_time(orderPrepareTime);
-        order.setStart_time(startDate);
-        order.setStatus("not started");
+        order.setPickupTime(pickupTime);
+        order.setPrepareTime(orderPrepareTime);
+        order.setStartTime(startDate);
+        order.setStatus(Order.NOT_STARTED);
 
         orderService.saveOrder(order);
 
@@ -162,9 +162,9 @@ public class ShoppingCartController {
 
             int gapCount = 0;
             for (Order order : orders) {
-                if (!order.getStatus().equals("finished")) {
-                    Date orderStartDate = order.getStart_time();
-                    Date orderEndDate = DateUtils.addMinutes(orderStartDate, order.getPrepare_time());
+                if (!order.getStatus().equals(Order.FINISHED)) {
+                    Date orderStartDate = order.getStartTime();
+                    Date orderEndDate = DateUtils.addMinutes(orderStartDate, order.getPrepareTime());
 
                     boolean notGap = orderEndDate.before(startDate) || endDate.before(orderStartDate);
                     if (!notGap) {

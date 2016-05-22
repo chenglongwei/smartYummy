@@ -1,6 +1,5 @@
 package com.smartYummy.model;
 
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 
@@ -21,20 +20,27 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "order", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<OrderItem> orderItems;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date pickup_time;
+    private Date pickupTime;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date start_time;
+    private Date startTime;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
 
     // unit minutes
-    private int prepare_time;
+    private int prepareTime;
+
+    public static final String NOT_STARTED = "in-process";
+    public static final String STARTED = "queued";
+    public static final String FINISHED = "fulfilled";
 
     /**
-     * including: not started; started; finished
+     * including: in­process (not started); queued (started); fulfilled (finished)
      */
     private String status;
 
@@ -62,20 +68,28 @@ public class Order {
         this.orderItems = orderItems;
     }
 
-    public Date getPickup_time() {
-        return pickup_time;
+    public Date getPickupTime() {
+        return pickupTime;
     }
 
-    public void setPickup_time(Date pickup_time) {
-        this.pickup_time = pickup_time;
+    public void setPickupTime(Date pickupTime) {
+        this.pickupTime = pickupTime;
     }
 
-    public int getPrepare_time() {
-        return prepare_time;
+    public Date getStartTime() {
+        return startTime;
     }
 
-    public void setPrepare_time(int prepare_time) {
-        this.prepare_time = prepare_time;
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public int getPrepareTime() {
+        return prepareTime;
+    }
+
+    public void setPrepareTime(int prepareTime) {
+        this.prepareTime = prepareTime;
     }
 
     public String getStatus() {
@@ -84,13 +98,5 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Date getStart_time() {
-        return start_time;
-    }
-
-    public void setStart_time(Date start_time) {
-        this.start_time = start_time;
     }
 }

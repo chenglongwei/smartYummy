@@ -21,7 +21,7 @@ public class ScheduledTasks {
     private OrderService orderService;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    //@Scheduled(cron = "0 0 6 * * ?")
+    //@Scheduled(cron = "0 0 5 * * ?")
     @Scheduled(fixedDelay = 50000)
     public void chief1() {
         System.out.println("worker1, threadId: " + Thread.currentThread().getId() +
@@ -49,11 +49,11 @@ public class ScheduledTasks {
         Date current = new Date();
         List<Order> orders = orderService.findSameDayOrders(current);
         for (Order order : orders) {
-            if (order.getStatus().equals("not started")) {
-                Date earliestStartTime = DateUtils.addMinutes(order.getPickup_time(),
-                        -(60 + order.getPrepare_time()));
+            if (order.getStatus().equals(Order.NOT_STARTED)) {
+                Date earliestStartTime = DateUtils.addMinutes(order.getPickupTime(),
+                        -(60 + order.getPrepareTime()));
                 if (current.after(earliestStartTime)) {
-                    order.setStatus("started");
+                    order.setStatus(Order.STARTED);
                     orderService.saveOrder(order);
                     return order;
                 }
@@ -75,12 +75,12 @@ public class ScheduledTasks {
                         " , order " + order.getId() + " begin to cooke");
                 try {
                     // emulate cooking
-                    Thread.sleep(order.getPrepare_time() * 60 * 1000);
+                    Thread.sleep(order.getPrepareTime() * 60 * 1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
 
-                order.setStatus("finished");
+                order.setStatus(Order.FINISHED);
                 orderService.saveOrder(order);
                 System.out.println(chiefId + ", order " + order.getId() + " finish cooking");
             } else {
