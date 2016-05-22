@@ -24,13 +24,16 @@ public class Order {
     private List<OrderItem> orderItems;
 
     @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date pickupTime;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date startTime;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date createTime;
+    private Date finishTime;
 
     // unit minutes
     private int prepareTime;
@@ -98,5 +101,21 @@ public class Order {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(Date finishTime) {
+        this.finishTime = finishTime;
     }
 }
