@@ -22,9 +22,10 @@ public class AdminReportController {
 
     @Autowired
     OrderService orderService;
+
     // order can be "create" or "start"
     @RequestMapping(value = "/order", method = RequestMethod.GET)
-    public String listOrder(Model model,
+    public String reportOrder(Model model,
                             @RequestParam("from") Date from,
                             @RequestParam("to") Date to,
                             @RequestParam("order") String order) {
@@ -39,8 +40,16 @@ public class AdminReportController {
         return "admin/report/order";
     }
 
+    // order can be "create" or "start"
+    @RequestMapping(value = "/order/all", method = RequestMethod.GET)
+    public String reportOrderList(Model model) {
+        List<Order> orders = orderService.getAllOrders();
+        model.addAttribute("orders", orders);
+        return "admin/report/order";
+    }
+
     @RequestMapping(value = "/popularity", method = RequestMethod.GET)
-    public String listItem(Model model, @RequestParam("from") Date from,
+    public String reportItem(Model model, @RequestParam("from") Date from,
                            @RequestParam("to") Date to) {
         /**
          * item tag: 0 means inactive, 1 means active

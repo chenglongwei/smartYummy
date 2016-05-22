@@ -126,6 +126,9 @@ public class ShoppingCartController {
         order.setFinishTime(DateUtils.addMinutes(startDate, orderPrepareTime));
         order.setStatus(Order.NOT_STARTED);
 
+        // set total price
+        order.setTotalPrice(shoppingCartService.getTotalPrice());
+
         orderService.saveOrder(order);
 
         response.setStatus("success");

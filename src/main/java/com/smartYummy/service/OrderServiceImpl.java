@@ -38,6 +38,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<Order> getAllOrders() {
+        return orderRepository.findAllByOrderByCreateTimeDesc();
+    }
+
+    @Override
     public Order findByID(long id) {
         return orderRepository.findOne(id);
     }

@@ -35,6 +35,8 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date finishTime;
 
+    private double totalPrice;
+
     // unit minutes
     private int prepareTime;
 
@@ -117,5 +119,13 @@ public class Order {
 
     public void setFinishTime(Date finishTime) {
         this.finishTime = finishTime;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
