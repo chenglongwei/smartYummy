@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -140,8 +141,9 @@ public class ShoppingCartController {
         order = orderService.saveOrder(order);
 
         // send email
+        DecimalFormat df = new DecimalFormat("####0.00");
         String subject = "Order placement success";
-        String text = "Order id: " + order.getId() + ", price: " + order.getTotalPrice() +
+        String text = "Order id: " + order.getId() + ", price: " + df.format(order.getTotalPrice()) +
                 "\nOrder details" + order.getOrderItems();
 
         try {

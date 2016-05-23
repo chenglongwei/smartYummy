@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,24 +26,24 @@ public class ScheduledTasks {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(cron = "0 0 5 * * ?")
-//    @Scheduled(fixedDelay = 50000)
+//    @Scheduled(cron = "0 0 5 * * ?")
+    @Scheduled(fixedDelay = 50000)
     public void chief1() {
         System.out.println("worker1, threadId: " + Thread.currentThread().getId() +
                 " start to get order, time " + dateFormat.format(new Date()));
         worker("chief1");
     }
 
-    @Scheduled(cron = "0 0 5 * * ?")
-//    @Scheduled(fixedDelay = 50000)
+//    @Scheduled(cron = "0 0 5 * * ?")
+    @Scheduled(fixedDelay = 50000)
     public void chief2() {
         System.out.println("worker2, threadId: " + Thread.currentThread().getId() +
                 " start to get order, time " + dateFormat.format(new Date()));
         worker("chief2");
     }
 
-    @Scheduled(cron = "0 0 5 * * ?")
-//    @Scheduled(fixedDelay = 50000)
+//    @Scheduled(cron = "0 0 5 * * ?")
+    @Scheduled(fixedDelay = 50000)
     public void chief3() {
         System.out.println("worker3, threadId: " + Thread.currentThread().getId() +
                 " start to get order, time " + dateFormat.format(new Date()));
@@ -82,7 +83,13 @@ public class ScheduledTasks {
     private void worker(String chiefId) {
         while (true) {
             if (endOfToday()) {
-                break;
+                try {
+                    // rest for one hour
+                    Thread.sleep(DateUtils.MILLIS_PER_HOUR);
+                    continue;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             Order order = pickOrder();
