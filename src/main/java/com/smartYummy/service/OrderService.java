@@ -13,6 +13,7 @@ import java.util.List;
 public interface OrderService {
     Order saveOrder(Order order);
     List<Order> getOrders(long userId);
+    List<Order> getAllOrders();
     Order findByID(long id);
     void deleteByID(long id);
     List<Order> findSameDayOrders(Date date);

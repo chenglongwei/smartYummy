@@ -35,12 +35,14 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date finishTime;
 
+    private double totalPrice;
+
     // unit minutes
     private int prepareTime;
 
-    public static final String NOT_STARTED = "in-process";
-    public static final String STARTED = "queued";
-    public static final String FINISHED = "fulfilled";
+    public static final String NOT_STARTED = "Not Started";
+    public static final String STARTED = "Started";
+    public static final String FINISHED = "Finished";
 
     /**
      * including: in­process (not started); queued (started); fulfilled (finished)
@@ -117,5 +119,13 @@ public class Order {
 
     public void setFinishTime(Date finishTime) {
         this.finishTime = finishTime;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

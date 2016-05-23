@@ -14,6 +14,7 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findByUserId(long userId);
+    List<Order> findAllByOrderByCreateTimeDesc();
     List<Order> findByCreateTimeBetweenOrderByCreateTime(Date from, Date to);
     List<Order> findByCreateTimeBetweenOrderByStartTime(Date from, Date to);
 }

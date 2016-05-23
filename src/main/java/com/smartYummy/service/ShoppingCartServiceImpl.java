@@ -54,6 +54,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return shoppingCart.getOrderItems();
     }
 
+    @Override
+    public double getTotalPrice() {
+        ShoppingCart shoppingCart = getShoppingCartFromSession();
+        return shoppingCart.getTotalPrice();
+    }
+
     private ShoppingCart getShoppingCartFromSession() {
         ShoppingCart shoppingCart = (ShoppingCart) httpSession.getAttribute(CART_ATTRIBUTE_NAME);
         if (shoppingCart == null) {

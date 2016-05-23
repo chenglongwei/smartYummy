@@ -45,6 +45,14 @@ public class ShoppingCart implements Serializable {
         return orderItems;
     }
 
+    public double getTotalPrice() {
+        double totalPrice = 0.0;
+        for (OrderItem orderItem : orderItems) {
+            totalPrice += orderItem.getQuantity() * orderItem.getItem().getPrice();
+        }
+        return totalPrice;
+    }
+
     public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }

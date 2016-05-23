@@ -8,14 +8,14 @@
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 
-		<link rel="icon" href="../js/favicon.ico" />
+		<link rel="icon" href="/js/favicon.ico" />
 
 		<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-		<script src="../js/holder.min.js"></script>
+		<script src="/js/holder.min.js"></script>
 
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-		<script src="../js/ie10-viewport-bug-workaround.js"></script>
-		<link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+		<script src="/js/ie10-viewport-bug-workaround.js"></script>
+		<link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
@@ -40,10 +40,10 @@
 		<title>Admin Create Page</title>
 
 		<!-- Custom styles for this template -->
-		<link href="../css/carousel1.css" rel="stylesheet" />
+		<link href="/css/carousel1.css" rel="stylesheet" />
 
 		<!-- Custom CSS -->
-		<link href="../css/business-casual.css" rel="stylesheet" />
+		<link href="/css/business-casual.css" rel="stylesheet" />
 
 		<!-- Fonts -->
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
@@ -68,34 +68,26 @@
 					<span class="icon-bar"></span>
 				</button>
 				<!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-				<a class="navbar-brand" href="index.html">Business Casual</a>
+				<a class="navbar-brand" href="../index.html">Business Casual</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="/">Home</a>
+						<a href="/admin/index">Home</a>
 					</li>
-					<li class="dropdown">
-						<a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="/item/list/appetizer">Appetizer</a></li>
-							<li><a href="/item/list/main">Main Course</a></li>
-							<li><a href="/item/list/dessert">Desert</a></li>
-							<li><a href="/item/list/drink">Drink</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="/item/list">All</a></li>
-						</ul>
-					</li>
-
 					<li>
-						<a href="/shopping/list">Shopping Cart</a>
+						<a href="/admin/item/list">Menus</a>
 					</li>
-
 					<li>
-						<a href="/order/list">Order</a>
+						<a href="/admin/item/create">Menu Provision</a>
 					</li>
-
+					<li>
+						<a href="/admin/report/order/all">Orders</a>
+					</li>
+					<li>
+						<a href="/admin/report/popularity">Popularity</a>
+					</li>
 					<li>
 						<a href="/logout">Logout</a>
 					</li>
@@ -119,15 +111,8 @@
 					<div class="panel panel-default">
 
 						<div class="panel-body" >
-							<div class="pull-right">
-								<a href="/item/adminlist" th:href="@{/item/adminlist}">See All Item List</a>
-							</div>
-							<!--<br/>-->
-							<!--<div class="pull-right">-->
-								<!--<a href="/logout" th:href="@{/logout}">Logout</a>-->
-							<!--</div>-->
 							<div class="main-login main-center" style="width: 200px; margin:0 auto;">
-								<form th:action="@{/item/create}"  class="form-horizontal" method="post" name="myForm" enctype="multipart/form-data">
+								<form th:action="@{/admin/item/create}"  class="form-horizontal" method="post" name="myForm" enctype="multipart/form-data">
 
 									<div class="form-group">
 										<!--<span class="input-group-addon" id="basic-addon7">Category</span>-->
@@ -232,10 +217,10 @@
 	</footer>
 
 	<!-- jQuery -->
-	<script src="../js/jquery.js"></script>
+	<script src="/js/jquery.js"></script>
 
 	<!-- Bootstrap Core JavaScript -->
-	<script src="../js/bootstrap.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 
 	</body>
 

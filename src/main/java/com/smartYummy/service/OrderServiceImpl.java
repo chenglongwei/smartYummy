@@ -28,6 +28,9 @@ public class OrderServiceImpl implements OrderService {
     public Order saveOrder(Order order) {
         orderRepository.save(order);
         List<OrderItem> orderItems = order.getOrderItems();
+        for (OrderItem orderItem : orderItems) {
+            orderItem.setOrder(order);
+        }
         orderItemRepository.save(orderItems);
         return order;
     }
@@ -35,6 +38,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrders(long userId) {
         return orderRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<Order> getAllOrders() {
+        return orderRepository.findAllByOrderByCreateTimeDesc();
     }
 
     @Override

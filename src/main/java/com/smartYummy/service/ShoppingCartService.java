@@ -14,4 +14,5 @@ public interface ShoppingCartService {
     ShoppingCart updateItem(OrderItem orderItem);
     void clear();
     List<OrderItem> getOrderItems();
+    double getTotalPrice();
 }
