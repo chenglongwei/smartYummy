@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getAllOrders() {
-        return orderRepository.findAllByOrderByCreateTimeDesc();
+        return orderRepository.findAllByOrderByCreateTimeAsc();
     }
 
     @Override
@@ -71,11 +71,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findOrdersByCreateTimeOrderByCreateTime(Date from, Date to) {
-        return orderRepository.findByCreateTimeBetweenOrderByCreateTime(from, to);
+        return orderRepository.findByCreateTimeBetweenOrderByCreateTimeAsc(from, to);
     }
 
     @Override
     public List<Order> findOrdersByCreateTimeOrderByStartTime(Date from, Date to) {
-        return orderRepository.findByCreateTimeBetweenOrderByStartTime(from, to);
+        return orderRepository.findByCreateTimeBetweenOrderByStartTimeAsc(from, to);
     }
 }
