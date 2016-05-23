@@ -137,7 +137,7 @@ public class ShoppingCartController {
         // send email
         String subject = "Order placement success";
         String text = "Order id: " + order.getId() + ", price: " + order.getTotalPrice() +
-                "\n Order details" + order.getOrderItems();
+                "\nOrder details" + order.getOrderItems();
 
         try {
             emailService.sendEmail(currentUser.getUser(), subject, text);
