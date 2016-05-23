@@ -1,6 +1,5 @@
 package com.smartYummy.controller;
 
-import com.smartYummy.model.Item;
 import com.smartYummy.model.Order;
 import com.smartYummy.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
