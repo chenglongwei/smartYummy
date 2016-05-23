@@ -45,6 +45,14 @@ public class AdminReportController {
     }
 
     // order can be "create" or "start"
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    public String reportOrder(Model model,
+                              @RequestParam("id") long id) {
+        model.addAttribute("order", orderService.findByID(id));
+        return "admin/report/detail";
+    }
+
+    // order can be "create" or "start"
     @RequestMapping(value = "/order/all", method = RequestMethod.GET)
     public String reportOrderList(Model model) {
         List<Order> orders = orderService.getAllOrders();
