@@ -1,6 +1,8 @@
 package com.smartYummy.controller;
 
+import com.smartYummy.model.Item;
 import com.smartYummy.model.Order;
+import com.smartYummy.service.ItemService;
 import com.smartYummy.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,6 +24,8 @@ public class AdminReportController {
 
     @Autowired
     OrderService orderService;
+    @Autowired
+    ItemService itemService;
 
     // order can be "create" or "start"
     @RequestMapping(value = "/order", method = RequestMethod.GET)
@@ -55,8 +60,15 @@ public class AdminReportController {
         /**
          * item tag: 0 means inactive, 1 means active
          */
-//        List<Item> items = itemService.findByTag(1);
-//        model.addAttribute("items", items);
+        List<Item> items = itemService.findByCategory(category);
+        model.addAttribute("items", items);
         return "admin/report/order";
     }
+
+//    private List<Item> filter(List<Item> items, Date from, Date to) {
+//        List<Item> filteredItems = new ArrayList<Item>();
+//        for (Item item : items) {
+//
+//        }
+//    }
 }
