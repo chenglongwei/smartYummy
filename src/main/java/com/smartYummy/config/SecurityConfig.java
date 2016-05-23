@@ -27,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/img/**").permitAll()
                 .antMatchers("/images/**").permitAll()
+                .antMatchers("/bower_components/**").permitAll()
                 .antMatchers("/item/create", "item/adminlist", "item/update/tag").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
