@@ -9,7 +9,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by chenglongwei on 5/9/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-09
+ * <p/>
+ * Order table CRUD operations.
  */
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {

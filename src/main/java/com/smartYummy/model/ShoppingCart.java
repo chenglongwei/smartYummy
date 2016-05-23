@@ -5,7 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by chenglongwei on 5/9/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-09
+ * <p/>
+ * Shopping cart stored in httpsession and persist in Redis.
  */
 public class ShoppingCart implements Serializable {
     private List<OrderItem> orderItems;

@@ -3,7 +3,12 @@ package com.smartYummy.model;
 import javax.persistence.*;
 
 /**
- * Created by chenglongwei on 5/9/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-09
+ * <p/>
+ *
+ * represent order items.
  */
 
 @Entity

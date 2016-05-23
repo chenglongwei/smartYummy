@@ -5,7 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by chenglongwei on 5/9/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-09
+ * <p/>
+ * OrderItem table CRUD operations.
  */
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {

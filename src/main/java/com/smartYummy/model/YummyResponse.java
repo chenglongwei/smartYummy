@@ -1,6 +1,5 @@
 package com.smartYummy.model;
 
-import java.util.Date;
 
 /**
  * Created by chenglongwei on 5/11/16.

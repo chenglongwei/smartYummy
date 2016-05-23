@@ -1,17 +1,15 @@
 package com.smartYummy.model;
 
-/**
- * Created by chenglongwei on 4/21/16.
- */
-
 import javax.persistence.*;
 
 /**
- * An entity User composed by three fields (id, email, name).
- * The Entity annotation indicates that this class is a JPA entity.
- * The Table annotation specifies the name for the table in the db.
  * @author chenglongwei
+ * @version 1.0
+ * @since 2016-04-21
+ * <p/>
+ * Represent table item.
  */
+
 @Entity
 @Table(name = "item")
 public class Item {

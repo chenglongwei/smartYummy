@@ -7,7 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by chenglongwei on 5/8/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-08
+ * <p/>
+ * Represent order table.
  */
 @Entity
 @Table(name = "yummy_order")

@@ -2,7 +2,12 @@ package com.smartYummy.model;
 
 
 /**
- * Created by chenglongwei on 5/22/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-22
+ * <p/>
+ *
+ * Used by menu item report.
  */
 public class ItemCount implements Comparable<ItemCount> {
     private Item item;

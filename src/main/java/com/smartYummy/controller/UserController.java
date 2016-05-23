@@ -26,9 +26,11 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A class to test interactions with the MySQL database using the UserService class.
- *
  * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-09
+ *
+ * user login and register controller.
  */
 @Controller
 public class UserController {

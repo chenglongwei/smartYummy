@@ -21,7 +21,12 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by chenglongwei on 5/9/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-09
+ *
+ * shopping cart controller api: add to shopping cart; update quantity; remove an item;
+ * set pickup time; check pickup time; calculate earliest pickup time; save order to database.
  */
 @Controller
 @RequestMapping("/shopping")

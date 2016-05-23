@@ -18,7 +18,7 @@ import java.util.List;
  * @version 1.0
  * @since 2016-05-9
  *
- * user order urls:
+ * user order urls: list orders and remove orders that are not started.
  */
 @Controller
 @RequestMapping("/order")

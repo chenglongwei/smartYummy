@@ -3,7 +3,11 @@ package com.smartYummy.model;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 /**
- * Created by chenglongwei on 5/1/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-1
+ *
+ * used for user login.
  */
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
     private User user;

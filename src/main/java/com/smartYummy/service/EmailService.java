@@ -9,7 +9,11 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
- * Created by chenglongwei on 5/22/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-22
+ * <p/>
+ * Async email service, to send notification email when create an order and when order is starting.
  */
 @Service
 public class EmailService {
