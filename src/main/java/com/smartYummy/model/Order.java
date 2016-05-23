@@ -40,9 +40,9 @@ public class Order {
     // unit minutes
     private int prepareTime;
 
-    public static final String NOT_STARTED = "not started";
-    public static final String STARTED = "started";
-    public static final String FINISHED = "finished";
+    public static final String NOT_STARTED = "Not Started";
+    public static final String STARTED = "Started";
+    public static final String FINISHED = "Finished";
 
     /**
      * including: in­process (not started); queued (started); fulfilled (finished)

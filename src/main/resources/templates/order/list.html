@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-    <title>My Shopping Cart</title>
+    <title>Order List Page</title>
 
     <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
 
@@ -154,7 +154,7 @@
                             <!--order iteration-->
                             <tr th:each="order : ${orders}">
                                 <td id = "id" name = "id" th:text="${order.id}" th:value="${order.id}" style = 'vertical-align: middle;'></td>
-                                <td id = "order.pickup_time" th:text="${order.pickup_time}" style = 'vertical-align: middle;'></td>
+                                <td id = "order.pickup_time" th:text="${order.pickupTime}" style = 'vertical-align: middle;'></td>
                                 <td id = "order.status" th:text="${order.status}" style = 'vertical-align: middle;'></td>
                                 <td>
                                     <div class="btn-group">
