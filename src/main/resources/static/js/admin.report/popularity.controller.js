@@ -8,12 +8,12 @@
 var app = angular.module('smartYummy.app', []);
 
 
-angular.module('smartYummy.app').controller('OrderReport.Controller', function ($scope, $log, $http, $timeout, $attrs, $window) {
+angular.module('smartYummy.app').controller('Popularity.Controller', function ($scope, $log, $http, $timeout, $attrs, $window) {
 
-    $scope.getReport = function(sortBy) {
+    $scope.getReport = function(category) {
 
-        if (sortBy == null) {
-            sortBy = 'order';
+        if (category == null) {
+            category = 'main';
         }
 
         var startTime = $("#startTime").data('date');
@@ -24,14 +24,9 @@ angular.module('smartYummy.app').controller('OrderReport.Controller', function (
 
         }
         else {
-            $window.location.href='/admin/report/order?from=' + startTime + '&to=' + endTime + '&order=' + sortBy;
+            $window.location.href='/admin/report/popularity?from=' + startTime + '&to=' + endTime + '&category=' + category;
         }
 
-    }
-
-    $scope.getOrderDetail = function(id) {
-
-        $window.location.href='/admin/report/detail?id=' + id;
     }
 
     function handleSuccess(res) {

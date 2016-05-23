@@ -8,34 +8,34 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <link rel="icon" href="../js/favicon.ico" />
+    <link rel="icon" href="/js/favicon.ico" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/js/jquery.min.js"></script>
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <script src="/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../js/holder.min.js"></script>
+    <script src="/js/holder.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
-    <script src="../js/angular-route.min.js"></script>
+    <script src="/js/angular-route.min.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-    <title>My Shopping Cart</title>
+    <title>Order Detail Page</title>
 
-    <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
+    <link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet" />
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../js/ie-emulation-modes-warning.js"></script>
+    <!--[if lt IE 9]><script src="/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -44,13 +44,13 @@
     <![endif]-->
 
     <!-- Custom styles for this template -->
-    <link href="../css/carousel1.css" rel="stylesheet" />
+    <link href="/css/carousel1.css" rel="stylesheet" />
 
     <!-- Bootstrap Core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
-    <link href="../css/business-casual.css" rel="stylesheet" />
+    <link href="/css/business-casual.css" rel="stylesheet" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <!-- Fonts -->
@@ -61,14 +61,13 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
-    <script src = "/js/shopping/cart.controller.js"></script>
+    <script src = "/js/order/order.controller.js"></script>
 
 </head>
 
-<body  ng-controller = 'Cart.Controller'>
+<body  ng-controller = 'Order.Controller'>
 
 <div class="brand">Smart Yummy Takeout</div>
-<!--<div class="address-bar">3481 Melrose Place | Beverly Hills, CA 90210 | 123.456.7890</div>-->
 <div class="address-bar">1 Washington Sq | San Jose, CA 95192 | 123.456.7890</div>
 
 
@@ -89,31 +88,24 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="/">Home</a>
+                    <a href="/admin/index">Home</a>
                 </li>
-                <li class="dropdown">
-                    <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/item/list/appetizer">Appetizer</a></li>
-                        <li><a href="/item/list/main">Main Course</a></li>
-                        <li><a href="/item/list/dessert">Desert</a></li>
-                        <li><a href="/item/list/drink">Drink</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="/item/list">All</a></li>
-                    </ul>
-                </li>
-
                 <li>
-                    <a href="/shopping/list">Shopping Cart</a>
+                    <a href="/admin/item/list">Menus</a>
                 </li>
-
                 <li>
-                    <a href="/order/list">Order</a>
+                    <a href="/admin/item/create">Menu Provision</a>
                 </li>
-
+                <li>
+                    <a href="/admin/report/order/all">Orders</a>
+                </li>
+                <li>
+                    <a href="/admin/report/popularity/all">Popularity</a>
+                </li>
                 <li>
                     <a href="/logout">Logout</a>
                 </li>
+
 
             </ul>
         </div>
@@ -127,26 +119,15 @@
         <div class="box">
             <div class="col-lg-12">
                 <hr/>
-                <h2 class="intro-text text-center">My Shopping Cart</h2>
+                <h2 class="intro-text text-center">Order Detail</h2>
                 <hr/>
             </div>
             <div ng-hide = 'empty' class="carousel-content">
-                <div class="btn-group pull-right" role="group">
-                    <!--<button type="button" class="btn btn-default" >-->
-                        <a href="picktime">Check Out</a>
-                    <!--</button>-->
-                </div>
-                <br/>
-                <br/>
                 <div class="panel panel-default">
 
                     <div class="panel-body" >
 
                         <table class="table table-hover">
-                            <tr th:if="${order_items.empty}">
-                                <td colspan="11">No items</td>
-                            </tr>
-
                             <thead class="thead-default">
                             <tr>
                                 <th>Dish Image</th>
@@ -155,57 +136,37 @@
                                 <th>Category</th>
                                 <th>Calories</th>
                                 <th>Price($)</th>
-                                <th></th>
                                 <th>Amount</th>
-                                <th></th>
-                                <th>Total Price($)</th>
-                                <th>Action</th>
-
+                                <th>Price</th>
                             </tr>
                             </thead>
                             <tbody>
                             <!--<tr ng-repeat = "item in manager.items track by $index" >-->
-                            <tr th:each="orderitem : ${order_items}">
+                            <tr th:each="orderitem : ${order.orderItems}">
                                 <td>
+                                    <!--<img style = "max-width:100px; height: auto; vertical-align: middle;"-->
                                     <img style = "max-width:100px; height: auto; vertical-align: middle;"
                                          th:attr="ng-src='/images/' + ${orderitem.item.id} +'.jpg'"/>
-                                    <!--<img style = "max-width:100px; height: auto; vertical-align: middle;"-->
-                                         <!--th:attr="ng-src='/Users/StarRUC/git/smartYummy/images/' + ${orderitem.item.id} +'.jpg'"/>-->
-
                                 </td>
                                 <td th:text="${orderitem.item.id}" style = 'vertical-align: middle;' ></td>
                                 <td th:text="${orderitem.item.name}" style="max-width: 200px; vertical-align: middle;"></td>
                                 <td th:text="${orderitem.item.category}" style = 'vertical-align: middle;'></td>
                                 <td th:text="${orderitem.item.calories}" style = 'vertical-align: middle;'></td>
                                 <td th:text="${orderitem.item.price}" style = 'vertical-align: middle;'></td>
-                                <td style = 'vertical-align: middle;'>
-                                    <div class="btn-group">
-                                        <button class="btn btn-primary" th:attr="ng-click='decQty(' + ${orderitem.item.id} + ', ' + ${orderitem.quantity} + ')'" style="background-color:dimgray; border: none; vertical-align: middle;">-</button>
-                                    </div>
-                                </td>
-
-                                <td th:text="${orderitem.quantity}" style = 'vertical-align: middle;' class = "amount">
-                                    <div class="input-group input-group-sm" style = "width: 100px">
-                                        <input type="text" class="form-control" th:attr="ng-change='updatePrice()', ng-model=${orderitem.quantity}, placeholder=${orderitem.quantity}"/>
-                                    </div>
-                                </td>
-                                <td style = 'vertical-align: middle;'>
-                                    <div class="btn-group">
-                                        <button class="btn btn-primary" th:attr="ng-click='incQty(' + ${orderitem.item.id} + ', ' + ${orderitem.quantity} + ')'" style="background-color:dimgray; border: none; vertical-align: middle;">+</button>
-                                    </div>
-                                </td>
-
+                                <td th:text="${orderitem.quantity}" style = 'vertical-align: middle;' ></td>
                                 <td th:text="${#numbers.formatDecimal(orderitem.quantity*orderitem.item.price, 0, 2)}" style = 'vertical-align: middle;'></td>
-                                <td style = 'vertical-align: middle;'>
-                                    <div class="btn-group">
-                                        <button class="btn btn-primary" th:attr="ng-click='removeItem(' + ${orderitem.item.id} + ')'" style="background-color:dimgray; border: none">DELETE</button>
-                                    </div>
-                                </td>
-
                             </tr>
 
                             </tbody>
+                            <tr th:align="right">
+                                <!--<td th:text="Total Price" style = 'vertical-align: middle;' ></td>-->
+                                <td><b>Total Price($)</b></td>
+                                <td th:text="${order.totalPrice}" style = 'vertical-align: middle;' ></td>
+                            </tr>
                         </table>
+
+
+
 
                     </div>
                 </div>
@@ -229,10 +190,10 @@
 </footer>
 
 <!-- jQuery -->
-<script src="../js/jquery.js"></script>
+<script src="/js/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="../js/bootstrap.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 </body>
 

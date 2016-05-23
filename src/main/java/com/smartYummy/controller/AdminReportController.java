@@ -75,7 +75,7 @@ public class AdminReportController {
         List<Item> items = itemService.findByCategory(category);
         List<Order> orders = orderService.findOrdersByCreateTimeOrderByCreateTime(from, to);
         model.addAttribute("item_count", sortItemByOrderCount(items, orders));
-        return "admin/report/order";
+        return "admin/report/popularity";
     }
 
     @RequestMapping(value = "/popularity/all", method = RequestMethod.GET)
@@ -83,7 +83,7 @@ public class AdminReportController {
         List<Item> items = itemService.findByCategory("main");
         List<Order> orders = orderService.getAllOrders();
         model.addAttribute("item_count", sortItemByOrderCount(items, orders));
-        return "admin/report/order";
+        return "admin/report/popularity";
     }
 
     /**
