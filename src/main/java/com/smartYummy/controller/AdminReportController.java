@@ -25,9 +25,9 @@ public class AdminReportController {
     // order can be "create" or "start"
     @RequestMapping(value = "/order", method = RequestMethod.GET)
     public String reportOrder(Model model,
-                            @RequestParam("from") Date from,
-                            @RequestParam("to") Date to,
-                            @RequestParam("order") String order) {
+                              @RequestParam("from") Date from,
+                              @RequestParam("to") Date to,
+                              @RequestParam("order") String order) {
         List<Order> orders;
         if ("start".equals(order)) {
             orders = orderService.findOrdersByCreateTimeOrderByStartTime(from, to);
@@ -48,8 +48,10 @@ public class AdminReportController {
     }
 
     @RequestMapping(value = "/popularity", method = RequestMethod.GET)
-    public String reportItem(Model model, @RequestParam("from") Date from,
-                           @RequestParam("to") Date to) {
+    public String reportItem(Model model,
+                             @RequestParam("from") Date from,
+                             @RequestParam("to") Date to,
+                             @RequestParam("category") String category) {
         /**
          * item tag: 0 means inactive, 1 means active
          */
