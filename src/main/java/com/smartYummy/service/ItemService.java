@@ -5,7 +5,11 @@ import com.smartYummy.model.Item;
 import java.util.List;
 
 /**
- * Created by chenglongwei on 4/28/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-04-28
+ * <p/>
+ * item services.
  */
 public interface ItemService {
     List<Item> findByCategory(String category);
