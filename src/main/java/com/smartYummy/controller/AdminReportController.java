@@ -1,7 +1,9 @@
 package com.smartYummy.controller;
 
 import com.smartYummy.model.Item;
+import com.smartYummy.model.ItemCount;
 import com.smartYummy.model.Order;
+import com.smartYummy.model.OrderItem;
 import com.smartYummy.service.ItemService;
 import com.smartYummy.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -61,22 +64,56 @@ public class AdminReportController {
     }
 
     @RequestMapping(value = "/popularity", method = RequestMethod.GET)
-    public String reportItem(Model model,
-                             @RequestParam("from") Date from,
-                             @RequestParam("to") Date to,
-                             @RequestParam("category") String category) {
-        /**
-         * item tag: 0 means inactive, 1 means active
-         */
+    public String reportItems(Model model,
+                              @RequestParam("from") Date from,
+                              @RequestParam("to") Date to,
+                              @RequestParam("category") String category) {
         List<Item> items = itemService.findByCategory(category);
-        model.addAttribute("items", items);
+        List<Order> orders = orderService.findOrdersByCreateTimeOrderByCreateTime(from, to);
+        model.addAttribute("item_count", sortItemByOrderCount(items, orders));
         return "admin/report/order";
     }
 
-//    private List<Item> filter(List<Item> items, Date from, Date to) {
-//        List<Item> filteredItems = new ArrayList<Item>();
-//        for (Item item : items) {
-//
-//        }
-//    }
+    @RequestMapping(value = "/popularity/all", method = RequestMethod.GET)
+    public String reportItems(Model model) {
+        List<Item> items = itemService.findByCategory("main");
+        List<Order> orders = orderService.getAllOrders();
+        model.addAttribute("item_count", sortItemByOrderCount(items, orders));
+        return "admin/report/order";
+    }
+
+
+    private List<ItemCount> sortItemByOrderCount(List<Item> items, List<Order> orders) {
+        List<ItemCount> itemCounts = new ArrayList<ItemCount>(items.size());
+        for (Item item : items) {
+            ItemCount itemCount = new ItemCount();
+            itemCount.setItem(item);
+            itemCount.setCount(getItemCount(orders, item));
+            itemCounts.add(itemCount);
+        }
+
+        Collections.sort(itemCounts);
+        return itemCounts;
+    }
+
+    private int getItemCount(List<Order> orders, Item item) {
+        int count = 0;
+        for (Order order : orders) {
+            if (orderContainsItem(order, item)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    private boolean orderContainsItem(Order order, Item item) {
+        for (OrderItem orderItem : order.getOrderItems()) {
+            if (item.getId() == orderItem.getItem().getId()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
