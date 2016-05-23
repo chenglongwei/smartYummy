@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Created by chenglongwei on 5/9/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-9
+ *
+ * user order urls:
  */
 @Controller
 @RequestMapping("/order")

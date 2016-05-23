@@ -6,7 +6,11 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 /**
- * Created by chenglongwei on 5/11/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-11
+ *
+ * Define the schedule pool size, since we have three workers to simulate chief.
  */
 @Configuration
 public class ScheduleConfig implements SchedulingConfigurer {

@@ -19,7 +19,11 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by chenglongwei on 5/22/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-19
+ *
+ * Administrator's url to get report: order report and popularity report.
  */
 @Controller
 @RequestMapping("/admin/report")
@@ -82,7 +86,12 @@ public class AdminReportController {
         return "admin/report/order";
     }
 
-
+    /**
+     *
+     * @param items
+     * @param orders
+     * @return a sorted itemCount data structure based on item's order times.
+     */
     private List<ItemCount> sortItemByOrderCount(List<Item> items, List<Order> orders) {
         List<ItemCount> itemCounts = new ArrayList<ItemCount>(items.size());
         for (Item item : items) {
@@ -103,7 +112,6 @@ public class AdminReportController {
                 count++;
             }
         }
-
         return count;
     }
 

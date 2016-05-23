@@ -80,4 +80,12 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findOrdersByCreateTimeOrderByStartTime(Date from, Date to) {
         return orderRepository.findByCreateTimeBetweenOrderByStartTimeAsc(from, to);
     }
+
+    @Override
+    public void resetOrders() {
+        List<Order> orders = orderRepository.findByStatus(Order.NOT_STARTED);
+        for (Order order : orders) {
+            deleteByID(order.getId());
+        }
+    }
 }

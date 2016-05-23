@@ -10,7 +10,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * Created by chenglongwei on 5/1/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-1
+ *
+ * Spring security configuration.
  */
 @Configuration
 @EnableWebSecurity
@@ -49,6 +53,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        /**
+         * The user login is authenticated from mysql, use hash and salt to store password.
+         */
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }

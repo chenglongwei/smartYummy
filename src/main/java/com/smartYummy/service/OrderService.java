@@ -19,4 +19,5 @@ public interface OrderService {
     List<Order> findSameDayOrders(Date date);
     List<Order> findOrdersByCreateTimeOrderByCreateTime(Date from, Date to);
     List<Order> findOrdersByCreateTimeOrderByStartTime(Date from, Date to);
+    void resetOrders();
 }

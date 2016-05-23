@@ -17,4 +17,5 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findAllByOrderByCreateTimeAsc();
     List<Order> findByCreateTimeBetweenOrderByCreateTimeAsc(Date from, Date to);
     List<Order> findByCreateTimeBetweenOrderByStartTimeAsc(Date from, Date to);
+    List<Order> findByStatus(String status);
 }

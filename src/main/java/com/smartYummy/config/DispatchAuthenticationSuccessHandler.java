@@ -15,7 +15,8 @@ import java.util.Collection;
  * @author chenglongwei
  * @version 1.0
  * @since 2016-05-21
- * Use to dispatch different role to different index page.
+ *
+ * Use to dispatch different ROLE to different default page after login.
  */
 public class DispatchAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
