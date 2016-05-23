@@ -41,8 +41,8 @@ public class ScheduledTasks {
         worker("chief2");
     }
 
-    //@Scheduled(cron = "0 0 5 * * ?")
-    @Scheduled(fixedDelay = 50000)
+    @Scheduled(cron = "0 0 5 * * ?")
+//    @Scheduled(fixedDelay = 50000)
     public void chief3() {
         System.out.println("worker3, threadId: " + Thread.currentThread().getId() +
                 " start to get order, time " + dateFormat.format(new Date()));
