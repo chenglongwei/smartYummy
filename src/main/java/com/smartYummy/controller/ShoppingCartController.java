@@ -4,6 +4,7 @@ import com.smartYummy.model.CurrentUser;
 import com.smartYummy.model.Order;
 import com.smartYummy.model.OrderItem;
 import com.smartYummy.model.YummyResponse;
+import com.smartYummy.service.EmailService;
 import com.smartYummy.service.ItemService;
 import com.smartYummy.service.OrderService;
 import com.smartYummy.service.ShoppingCartService;
@@ -31,6 +32,8 @@ public class ShoppingCartController {
     private OrderService orderService;
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private EmailService emailService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)
@@ -129,7 +132,18 @@ public class ShoppingCartController {
         // set total price
         order.setTotalPrice(shoppingCartService.getTotalPrice());
 
-        orderService.saveOrder(order);
+        order = orderService.saveOrder(order);
+
+        // send email
+        String subject = "Order placement success";
+        String text = "Order id: " + order.getId() + ", price: " + order.getTotalPrice() +
+                "\n Order details" + order.getOrderItems();
+
+        try {
+            emailService.sendEmail(currentUser.getUser(), subject, text);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         response.setStatus("success");
 

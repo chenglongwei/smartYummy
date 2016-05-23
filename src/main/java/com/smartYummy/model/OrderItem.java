@@ -65,4 +65,10 @@ public class OrderItem {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    @Override
+    public String toString() {
+        return "Item id: " + item.getId() + ", name: " + item.getName() +
+                ", quantity: " + quantity;
+    }
 }

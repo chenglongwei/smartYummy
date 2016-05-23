@@ -1,6 +1,7 @@
 package com.smartYummy;
 
 import com.smartYummy.model.Order;
+import com.smartYummy.service.EmailService;
 import com.smartYummy.service.OrderService;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ import java.util.List;
 public class ScheduledTasks {
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private EmailService emailService;
+
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     //@Scheduled(cron = "0 0 5 * * ?")
@@ -58,6 +62,15 @@ public class ScheduledTasks {
                     order.setStartTime(current);
                     order.setFinishTime(DateUtils.addMinutes(current, order.getPrepareTime()));
                     orderService.saveOrder(order);
+
+                    // send email
+                    String subject = "Order starts to prepare";
+                    String text = "Order id is: " + order.getId() + "\nReady to pickup time is " + order.getFinishTime();
+                    try {
+                        emailService.sendEmail(order.getUser(), subject, text);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     return order;
                 }
             }

@@ -5,7 +5,6 @@ package com.smartYummy.model;
  */
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * An entity User composed by three fields (id, email, name).
@@ -26,9 +25,6 @@ public class Item {
     private int calories;
     private int prepareTime;
     private int tag;
-
-    @OneToMany(mappedBy = "item", fetch = FetchType.EAGER)
-    private List<OrderItem> orderItems;
 
     public Item() {
     }
@@ -105,14 +101,6 @@ public class Item {
 
     public void setTag(int tag) {
         this.tag = tag;
-    }
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
     }
 
     @Override
