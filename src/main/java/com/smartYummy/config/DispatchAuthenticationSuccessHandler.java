@@ -12,7 +12,10 @@ import java.io.IOException;
 import java.util.Collection;
 
 /**
- * Created by chenglongwei on 5/22/16.
+ * @author chenglongwei
+ * @version 1.0
+ * @since 2016-05-21
+ * Use to dispatch different role to different index page.
  */
 public class DispatchAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
